@@ -1,11 +1,13 @@
 package xyz.gamars.civilization.objects.items;
 
+import com.mojang.authlib.minecraft.client.MinecraftClient;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.DistExecutor;
 
 public class DebugItem extends Item {
 
@@ -17,7 +19,7 @@ public class DebugItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (player.isCrouching()) {
             if (!level.isClientSide()) {
-
+                
             }
         } else {
             if (!level.isClientSide()) {
