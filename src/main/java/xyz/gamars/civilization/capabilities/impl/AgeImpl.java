@@ -3,11 +3,10 @@ package xyz.gamars.civilization.capabilities.impl;
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.Random;
 
-public class AgeImpl implements INBTSerializable<CompoundTag> {
+public class AgeImpl implements IImpl {
 
     private int AGE_LIMIT = 100;
     private int AGE_MIN = 50;
@@ -53,11 +52,18 @@ public class AgeImpl implements INBTSerializable<CompoundTag> {
         return age >= 50;
     }
 
-    public void printAge(Player player) {
+    @Override
+    public void copyFrom(IImpl source) { // FIND THE PROPER COPY FROM THAT YOU SAW BEFORE
+        this.age = ((AgeImpl) source).age;
+    }
+
+    @Override
+    public void print(Player player) {
         LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Age: " + age);
     }
 
-    public String getAgeText(Player player) {
+    @Override
+    public String getText(Player player) {
         return player.getDisplayName().getString() + "'s Age: " + age;
     }
 
@@ -79,4 +85,5 @@ public class AgeImpl implements INBTSerializable<CompoundTag> {
         Random random = new Random();
         return random.nextInt(maxAge - minAge) + minAge;
     }
+
 }

@@ -1,16 +1,11 @@
 package xyz.gamars.civilization.objects.items;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import xyz.gamars.civilization.capabilities.CivCapabilities;
-import xyz.gamars.civilization.gui.TestGui;
 
 public class DebugItem extends Item {
 
@@ -20,7 +15,12 @@ public class DebugItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (!level.isClientSide()) {
+        if (player.isCrouching()) {
+            if (!level.isClientSide()) {
+
+            }
+        } else {
+            if (!level.isClientSide()) {
 /*
             if (player.isCrouching()) {
                 player.getCapability(CivCapabilities.AGE).ifPresent(age -> {
@@ -36,9 +36,13 @@ public class DebugItem extends Item {
                     player.displayClientMessage(Component.literal(age.getAgeText(player)).withStyle(ChatFormatting.AQUA), true);
                 });
             }
+
 */
-        } else {
-            TestGui.open();
+
+
+            } else {
+                // Minecraft.getInstance().setScreen(new NPCScreen());
+            }
         }
         return super.use(level, player, hand);
     }

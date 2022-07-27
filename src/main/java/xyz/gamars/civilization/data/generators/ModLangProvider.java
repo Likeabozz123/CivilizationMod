@@ -3,6 +3,7 @@ package xyz.gamars.civilization.data.generators;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import xyz.gamars.civilization.Civilization;
+import xyz.gamars.civilization.entities.CivEntityTypes;
 import xyz.gamars.civilization.init.ItemInit;
 
 public class ModLangProvider extends LanguageProvider {
@@ -15,6 +16,10 @@ public class ModLangProvider extends LanguageProvider {
 
         add(ItemInit.DEBUG_ITEM.get(), "Debug Item");
         add(ItemInit.PLAYER_LIKE_SPAWN_EGG.get(), "Player Spawn Egg");
+        add(ItemInit.BARBARIAN_SPAWN_EGG.get(), "Barbarian Spawn Egg");
+
+        add(CivEntityTypes.PLAYER_LIKE.get(), "PlayerLike");
+        add(CivEntityTypes.BARBARIAN.get(), "Barbarian");
 
     }
 

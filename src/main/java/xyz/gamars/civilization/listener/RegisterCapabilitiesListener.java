@@ -2,7 +2,6 @@ package xyz.gamars.civilization.listener;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -19,20 +18,15 @@ import xyz.gamars.civilization.capabilities.provider.StatProvider;
 import xyz.gamars.civilization.capabilities.provider.ThirstProvider;
 import xyz.gamars.civilization.capabilities.provider.TribeProvider;
 
-import java.lang.reflect.Field;
-
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID)
 public class RegisterCapabilitiesListener {
 
     // create a capability template? with events preattached?
-
     // maybe combine age and stats?
 
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){
         if (event.getObject() instanceof Player) {
-            // create an automated for loop to prevent rewriting the same code
-
             // AGE
             if (!event.getObject().getCapability(CivCapabilities.AGE).isPresent()) {
                 event.addCapability(AgeProvider.IDENTIFIER, new AgeProvider());
@@ -50,7 +44,6 @@ public class RegisterCapabilitiesListener {
                 event.addCapability(StatProvider.IDENTIFIER, new StatProvider());
             }
 
-
         }
     }
 
@@ -62,21 +55,21 @@ public class RegisterCapabilitiesListener {
 
             // AGE
             event.getOriginal().getCapability(CivCapabilities.AGE).ifPresent(originalAge -> {
-                originalAge.printAge(event.getOriginal());
+                originalAge.print(event.getOriginal());
                 event.getEntity().getCapability(CivCapabilities.AGE).ifPresent(newAge -> {
                     newAge.setAge(originalAge.getAge());
                 });
             });
             // TRIBE
             event.getOriginal().getCapability(CivCapabilities.TRIBE).ifPresent(originalTribe -> {
-                originalTribe.printTribe(event.getOriginal());
+                originalTribe.print(event.getOriginal());
                 event.getEntity().getCapability(CivCapabilities.TRIBE).ifPresent(newTribe -> {
                     newTribe.setTribe(originalTribe.getTribe());
                 });
             });
             // THIRST
             event.getOriginal().getCapability(CivCapabilities.THIRST).ifPresent(originalThirst -> {
-                originalThirst.printThirst(event.getOriginal());
+                originalThirst.print(event.getOriginal());
                 event.getEntity().getCapability(CivCapabilities.THIRST).ifPresent(newThirst -> {
                     newThirst.setThirst(originalThirst.getThirst());
                 });
@@ -96,6 +89,7 @@ public class RegisterCapabilitiesListener {
                     newStats.setRacism(originalStats.getRacism());
                 });
             });
+
         }
     }
 

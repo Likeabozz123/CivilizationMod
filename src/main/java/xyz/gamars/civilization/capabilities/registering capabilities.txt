@@ -1,0 +1,6 @@
+Adding Capabilities -
+- Create an implementation
+- Create a provider
+- Register inside `RegisterCapabilitiesListener.registerCapabilities`
+- Attach to Player inside `RegisterCapabilitiesListener.onAttachCapabilitiesPlayer`
+- If wanted to be saved on death, duplicate it from clone inside `RegisterCapabilitiesListener.onPlayerCloned`

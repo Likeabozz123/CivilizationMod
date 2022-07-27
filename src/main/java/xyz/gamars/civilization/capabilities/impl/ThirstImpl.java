@@ -3,9 +3,8 @@ package xyz.gamars.civilization.capabilities.impl;
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.util.INBTSerializable;
 
-public class ThirstImpl implements INBTSerializable<CompoundTag> {
+public class ThirstImpl implements IImpl {
 
     public static final String NBT_KEY_THIRST = "thirst";
     private int thirst = 100;
@@ -26,14 +25,20 @@ public class ThirstImpl implements INBTSerializable<CompoundTag> {
         this.thirst = 100;
     }
 
-    public void printThirst(Player player) {
+    @Override
+    public void print(Player player) {
         LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Thirst: " + thirst);
     }
 
-    public String getThirstText(Player player) {
+    @Override
+    public String getText(Player player) {
         return player.getDisplayName().getString() + "'s Thirst: " + thirst;
     }
 
+    @Override
+    public void copyFrom(IImpl source) {
+        this.thirst = ((ThirstImpl) source).thirst;
+    }
 
     @Override
     public CompoundTag serializeNBT() {
@@ -46,4 +51,8 @@ public class ThirstImpl implements INBTSerializable<CompoundTag> {
     public void deserializeNBT(CompoundTag compoundTag) {
         thirst = compoundTag.getInt(NBT_KEY_THIRST);
     }
+
+
+
+
 }

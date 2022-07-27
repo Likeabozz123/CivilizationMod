@@ -17,5 +17,8 @@ public class ItemInit {
     public static final RegistryObject<Item> PLAYER_LIKE_SPAWN_EGG = ITEMS.register("player_spawn_egg",
             () -> new ForgeSpawnEggItem(CivEntityTypes.PLAYER_LIKE,0xffffff, 0x00b6ff,
                     new Item.Properties()));
+    public static final RegistryObject<Item> BARBARIAN_SPAWN_EGG = ITEMS.register("barbarian_spawn_egg",
+            () -> new ForgeSpawnEggItem(CivEntityTypes.BARBARIAN,0xffffff, 0xff3c00,
+                    new Item.Properties()));
 
 }

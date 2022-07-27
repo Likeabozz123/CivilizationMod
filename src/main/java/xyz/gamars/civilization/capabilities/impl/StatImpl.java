@@ -1,9 +1,10 @@
 package xyz.gamars.civilization.capabilities.impl;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraft.world.entity.player.Player;
 
-public class StatImpl implements INBTSerializable<CompoundTag> {
+public class StatImpl implements IImpl {
 
     public static final String NBT_KEY_MAX_HEALTH = "max_health";
     public static final String NBT_KEY_INTELLIGENCE = "intelligence";
@@ -98,6 +99,29 @@ public class StatImpl implements INBTSerializable<CompoundTag> {
     }
 
     @Override
+    public void print(Player player) {
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Max Health: " + maxHealth);
+    }
+
+    @Override
+    public String getText(Player player) {
+        return player.getDisplayName().getString() + "'s Max Health: " + maxHealth;
+    }
+
+    @Override
+    public void copyFrom(IImpl source) {
+        this.maxHealth = ((StatImpl) source).maxHealth;
+        this.intelligence = ((StatImpl) source).intelligence;
+        this.wisdom = ((StatImpl) source).wisdom;
+        this.racism = ((StatImpl) source).racism;
+        this.charisma = ((StatImpl) source).charisma;
+        this.strength = ((StatImpl) source).strength;
+        this.speed = ((StatImpl) source).speed;
+        this.stamina = ((StatImpl) source).stamina;
+        this.gender = ((StatImpl) source).gender;
+    }
+
+    @Override
     public CompoundTag serializeNBT() {
         CompoundTag compoundTag = new CompoundTag();
         compoundTag.putInt(NBT_KEY_MAX_HEALTH, maxHealth);
@@ -125,4 +149,6 @@ public class StatImpl implements INBTSerializable<CompoundTag> {
         gender = compoundTag.getString(NBT_KEY_GENDER);
 
     }
+
+
 }

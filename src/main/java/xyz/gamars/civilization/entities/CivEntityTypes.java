@@ -7,6 +7,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import xyz.gamars.civilization.Civilization;
+import xyz.gamars.civilization.entities.barbarian.BarbarianEntity;
 import xyz.gamars.civilization.entities.playerlike.PlayerLikeEntity;
 
 public class CivEntityTypes {
@@ -17,5 +18,9 @@ public class CivEntityTypes {
             () -> EntityType.Builder.of(PlayerLikeEntity::new, MobCategory.CREATURE)
                     .sized(0.6F, 1.8F) // HITBOX MODEL
                     .build(new ResourceLocation(Civilization.MOD_ID, "player_like").toString()));
+    public static final RegistryObject<EntityType<BarbarianEntity>> BARBARIAN = ENTITIY_TYPES.register("barbarian",
+            () -> EntityType.Builder.of(BarbarianEntity::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.8F) // HITBOX MODEL
+                    .build(new ResourceLocation(Civilization.MOD_ID, "barbarian").toString()));
 
 }

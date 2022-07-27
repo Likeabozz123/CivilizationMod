@@ -1,4 +1,7 @@
 {
+  "entity.civilization.barbarian": "Barbarian",
+  "entity.civilization.player_like": "PlayerLike",
+  "item.civilization.barbarian_spawn_egg": "Barbarian Spawn Egg",
   "item.civilization.debug_item": "Debug Item",
   "item.civilization.player_spawn_egg": "Player Spawn Egg"
 }

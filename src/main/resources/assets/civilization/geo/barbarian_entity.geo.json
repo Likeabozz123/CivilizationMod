@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.player_like_entity",
+				"identifier": "geometry.barbarian_entity",
 				"texture_width": 16,
 				"texture_height": 16,
 				"visible_bounds_width": 3,
@@ -49,7 +49,7 @@
 				{
 					"name": "body",
 					"parent": "steve",
-					"pivot": [0, 0, 0],
+					"pivot": [0, 23, 0],
 					"cubes": [
 						{
 							"origin": [-4, 12, -2],
@@ -80,7 +80,7 @@
 				{
 					"name": "right_arm",
 					"parent": "steve",
-					"pivot": [0, 0, 0],
+					"pivot": [-5, 23, 0],
 					"cubes": [
 						{
 							"origin": [-8, 12, -2],
@@ -111,7 +111,7 @@
 				{
 					"name": "left_arm",
 					"parent": "steve",
-					"pivot": [0, 8, 0],
+					"pivot": [5, 23, 0],
 					"cubes": [
 						{
 							"origin": [4, 12, -2],

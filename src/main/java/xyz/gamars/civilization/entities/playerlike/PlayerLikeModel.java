@@ -2,22 +2,35 @@ package xyz.gamars.civilization.entities.playerlike;
 
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
-import xyz.gamars.civilization.Civilization;
 
 public class PlayerLikeModel extends AnimatedGeoModel<PlayerLikeEntity> {
 
     @Override
     public ResourceLocation getModelResource(PlayerLikeEntity object) {
-        return new ResourceLocation(Civilization.MOD_ID, "geo/player_like_entity.geo.json");
+        return PlayerLikeEntity.GEO_PATH;
     }
 
     @Override
     public ResourceLocation getTextureResource(PlayerLikeEntity object) {
-        return new ResourceLocation(Civilization.MOD_ID, "textures/entity/player_like/likeabozz123.png");
+        return PlayerLikeRenderer.LOCATION_BY_VARIANT.get(object.getVariant());
     }
 
     @Override
     public ResourceLocation getAnimationResource(PlayerLikeEntity animatable) {
-        return new ResourceLocation(Civilization.MOD_ID, "animations/player_like_entity.animation.json");
+        return PlayerLikeEntity.ANIMATION_PATH;
     }
+
+
+/*    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
+    public void setLivingAnimations(PlayerLikeEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
+        super.setLivingAnimations(entity, uniqueID, customPredicate);
+        IBone head = this.getAnimationProcessor().getBone("head");
+
+        EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
+        if (head != null) {
+            head.setRotationX(extraData.headPitch * ((float) Math.PI / 180F));
+            head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 180F));
+        }
+    }*/
 }

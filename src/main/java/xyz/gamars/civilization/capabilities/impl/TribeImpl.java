@@ -3,10 +3,8 @@ package xyz.gamars.civilization.capabilities.impl;
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.util.INBTSerializable;
 
-public class TribeImpl implements INBTSerializable<CompoundTag> {
-
+public class TribeImpl implements IImpl {
 
     public static final String NBT_KEY_TRIBE_NAME = "tribe";
     private String tribeName = "TribeName";
@@ -19,12 +17,19 @@ public class TribeImpl implements INBTSerializable<CompoundTag> {
         this.tribeName = tribeName;
     }
 
-    public void printTribe(Player player) {
+    @Override
+    public void print(Player player) {
         LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Tribe: " + tribeName);
     }
 
-    public String getTribeText(Player player) {
+    @Override
+    public String getText(Player player) {
         return player.getDisplayName().getString() + "'s Tribe: " + tribeName;
+    }
+
+    @Override
+    public void copyFrom(IImpl source) {
+        this.tribeName = ((TribeImpl) source).tribeName;
     }
 
     @Override
@@ -38,4 +43,5 @@ public class TribeImpl implements INBTSerializable<CompoundTag> {
     public void deserializeNBT(CompoundTag compoundTag) {
         tribeName = compoundTag.getString(NBT_KEY_TRIBE_NAME);
     }
+
 }

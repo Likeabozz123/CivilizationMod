@@ -25,6 +25,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         builder(ItemInit.DEBUG_ITEM, itemHandheld);
         spawnEggBuilder(ItemInit.PLAYER_LIKE_SPAWN_EGG, itemGenerated);
+        spawnEggBuilder(ItemInit.BARBARIAN_SPAWN_EGG, itemGenerated);
 
 
 

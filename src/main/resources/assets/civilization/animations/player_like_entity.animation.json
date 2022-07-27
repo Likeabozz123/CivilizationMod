@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.PlayerLikeEntity.walk": {
+		"animation.player_like_entity.walk": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -53,9 +53,50 @@
 				}
 			}
 		},
-		"animation.PlayerLikeEntity.idle": {
+		"animation.player_like_entity.idle": {
 			"loop": true,
 			"override_previous_animation": true
+		},
+		"animation.player_like_entity.sitting": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"position": {
+						"vector": [0, -8, 0]
+					}
+				},
+				"body": {
+					"position": {
+						"vector": [0, -8, 0]
+					}
+				},
+				"right_arm": {
+					"position": {
+						"vector": [0, -8, 0]
+					}
+				},
+				"left_arm": {
+					"position": {
+						"vector": [0, -8, 0]
+					}
+				},
+				"left_leg": {
+					"rotation": {
+						"vector": [-90, -27.5, 0]
+					},
+					"position": {
+						"vector": [0, -10, 0]
+					}
+				},
+				"right_leg": {
+					"rotation": {
+						"vector": [-90, 22.5, 0]
+					},
+					"position": {
+						"vector": [0, -10, 0]
+					}
+				}
+			}
 		}
 	},
 	"geckolib_format_version": 2

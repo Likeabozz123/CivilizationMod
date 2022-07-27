@@ -10,13 +10,11 @@ import xyz.gamars.civilization.capabilities.impl.TribeImpl;
 
 public class CivCapabilities {
 
+    public static Capability<AgeImpl> AGE = CapabilityManager.get(new CapabilityToken<>(){});
+    public static Capability<TribeImpl> TRIBE = CapabilityManager.get(new CapabilityToken<>(){});
+    public static Capability<ThirstImpl> THIRST = CapabilityManager.get(new CapabilityToken<>(){});
+    public static Capability<StatImpl> STATS = CapabilityManager.get(new CapabilityToken<>(){});
 
-
-    public static Capability<AgeImpl> AGE = CapabilityManager.get(new CapabilityToken<>(){});;
-    public static Capability<TribeImpl> TRIBE = CapabilityManager.get(new CapabilityToken<>(){});;
-    public static Capability<ThirstImpl> THIRST = CapabilityManager.get(new CapabilityToken<>(){});;
-    public static Capability<StatImpl> STATS = CapabilityManager.get(new CapabilityToken<>(){});;
-
-
+    // potentially merge all capabilities
 
 }

@@ -3,7 +3,6 @@ package xyz.gamars.civilization;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -11,7 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 import xyz.gamars.civilization.entities.CivEntityTypes;
-import xyz.gamars.civilization.entities.playerlike.PlayerLikeEntity;
+import xyz.gamars.civilization.entities.barbarian.BarbarianRenderer;
 import xyz.gamars.civilization.entities.playerlike.PlayerLikeRenderer;
 import xyz.gamars.civilization.init.ItemInit;
 
@@ -34,7 +33,6 @@ public class Civilization {
         modEventBus.addListener(this::clientSetup);
         MinecraftForge.EVENT_BUS.register(this);
 
-
         GeckoLib.initialize();
         
     }
@@ -42,6 +40,7 @@ public class Civilization {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         EntityRenderers.register(CivEntityTypes.PLAYER_LIKE.get(), PlayerLikeRenderer::new);
+        EntityRenderers.register(CivEntityTypes.BARBARIAN.get(), BarbarianRenderer::new);
     }
 
 
