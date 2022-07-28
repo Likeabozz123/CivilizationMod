@@ -6,6 +6,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
@@ -13,6 +14,7 @@ import xyz.gamars.civilization.entities.CivEntityTypes;
 import xyz.gamars.civilization.entities.barbarian.BarbarianRenderer;
 import xyz.gamars.civilization.entities.playerlike.PlayerLikeRenderer;
 import xyz.gamars.civilization.init.ItemInit;
+import xyz.gamars.civilization.network.NetworkHandler;
 
 @Mod(Civilization.MOD_ID)
 public class Civilization {
@@ -31,10 +33,10 @@ public class Civilization {
         CivEntityTypes.ENTITIY_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::clientSetup);
+        modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
 
         GeckoLib.initialize();
-        
         
     }
 
@@ -44,6 +46,9 @@ public class Civilization {
         EntityRenderers.register(CivEntityTypes.BARBARIAN.get(), BarbarianRenderer::new);
     }
 
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        NetworkHandler.register();
+    }
 
 
 

@@ -2,7 +2,11 @@ package xyz.gamars.civilization.capabilities.impl;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import org.apache.logging.log4j.core.jmx.Server;
+import xyz.gamars.civilization.network.NetworkHandler;
+import xyz.gamars.civilization.network.packets.PacketSyncAgeToClient;
 
 import java.util.Random;
 

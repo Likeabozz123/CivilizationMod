@@ -18,6 +18,8 @@ authors="Likeabozz123, jeffchicken13"
 #displayTest="MATCH_VERSION" # MATCH_VERSION is the default if nothing is specified (#optional)
 description='''
 Civilization Mod, focused to bring the progression of humans, along with their own civilizations, and realistic obstacles, like natural disasters, thirst, and temperature. Along with all the bad parts of humanity, such as disease, conquering, economies and much more.
+
+Want to give some credit as well to youtubers/programmers like McJty, Modding by Kaupenjoe, TurtyWurty, and the Modded Minecraft discord server for help making this possible!
 '''
 [[dependencies.civilization]]
     modId="forge"
