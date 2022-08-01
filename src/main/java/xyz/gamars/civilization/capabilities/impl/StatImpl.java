@@ -2,7 +2,15 @@ package xyz.gamars.civilization.capabilities.impl;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import xyz.gamars.civilization.capabilities.CivCapabilities;
+import xyz.gamars.civilization.network.NetworkHandler;
+import xyz.gamars.civilization.network.packets.PacketSyncStatsToClient;
+
+import java.util.HashMap;
+import java.util.Random;
 
 public class StatImpl implements IImpl {
 
@@ -16,15 +24,15 @@ public class StatImpl implements IImpl {
     public static final String NBT_KEY_STAMINA = "stamina";
     public static final String NBT_KEY_GENDER = "gender";
     public static final String NBT_KEY_STATS = "stats";
-    private int maxHealth;
-    private int intelligence;
-    private int wisdom;
-    private int racism;
-    private int charisma;
-    private int strength;
-    private int speed;
-    private int stamina;
-    private String gender = "";
+    private int maxHealth = generateRandomInt(10, 30);
+    private int intelligence = generateRandomInt(10, 30);
+    private int wisdom = generateRandomInt(10, 30);
+    private int racism = generateRandomInt(10, 30);
+    private int charisma = generateRandomInt(10, 30);
+    private int strength = generateRandomInt(10, 30);
+    private int speed = generateRandomInt(10, 30);
+    private int stamina = generateRandomInt(10, 30);
+    private String gender = randomGender();
 
     public int getMaxHealth() {
         return maxHealth;
@@ -98,27 +106,69 @@ public class StatImpl implements IImpl {
         this.racism = racism;
     }
 
+    public void resetStats() {
+        maxHealth = generateRandomInt(10, 40);
+        intelligence = generateRandomInt(10, 30);
+        wisdom = generateRandomInt(10, 30);
+        racism = generateRandomInt(10, 30);
+        charisma = generateRandomInt(10, 30);
+        strength = generateRandomInt(10, 30);
+        speed = generateRandomInt(10, 30);
+        stamina = generateRandomInt(10, 30);
+        gender = randomGender();
+    }
+
+    public void syncStats(ServerPlayer player) {
+        player.getCapability(CivCapabilities.STATS).ifPresent(stat -> {
+            NetworkHandler.sendToPlayer(new PacketSyncStatsToClient(
+                    stat.getMaxHealth(),
+                    stat.getIntelligence(),
+                    stat.getWisdom(),
+                    stat.getRacism(),
+                    stat.getCharisma(),
+                    stat.getStrength(),
+                    stat.getSpeed(),
+                    stat.getStamina(),
+                    stat.getGender()), (ServerPlayer) player);
+        });
+    }
+
+    public void update(ServerPlayer player) {
+        player.getCapability(CivCapabilities.STATS).ifPresent(stat -> {
+            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(stat.getMaxHealth());
+        });
+    }
+
     @Override
     public void print(Player player) {
         LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Max Health: " + maxHealth);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Intelligence: " + intelligence);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Wisdom: " + wisdom);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Racism: " + racism);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Charisma: " + charisma);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Strength: " + strength);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Speed: " + speed);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Stamina: " + stamina);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Gender: " + gender);
     }
 
     @Override
     public String getText(Player player) {
-        return player.getDisplayName().getString() + "'s Max Health: " + maxHealth;
+        return "Use StatImpl#getStatText instead";
     }
 
-    @Override
-    public void copyFrom(IImpl source) {
-        this.maxHealth = ((StatImpl) source).maxHealth;
-        this.intelligence = ((StatImpl) source).intelligence;
-        this.wisdom = ((StatImpl) source).wisdom;
-        this.racism = ((StatImpl) source).racism;
-        this.charisma = ((StatImpl) source).charisma;
-        this.strength = ((StatImpl) source).strength;
-        this.speed = ((StatImpl) source).speed;
-        this.stamina = ((StatImpl) source).stamina;
-        this.gender = ((StatImpl) source).gender;
+    public HashMap<String, String> getStatText(Player player) {
+        HashMap<String, String> statText = new HashMap<>();
+        statText.put("max_health", player.getDisplayName().getString() + "'s Max Health: " + maxHealth);
+        statText.put("intelligence", player.getDisplayName().getString() + "'s Intelligence: " + intelligence);
+        statText.put("wisdom", player.getDisplayName().getString() + "'s Wisdom: " + wisdom);
+        statText.put("racism", player.getDisplayName().getString() + "'s Racism: " + racism);
+        statText.put("charisma", player.getDisplayName().getString() + "'s Charisma: " + charisma);
+        statText.put("strength", player.getDisplayName().getString() + "'s Strength: " + strength);
+        statText.put("speed", player.getDisplayName().getString() + "'s Speed: " + speed);
+        statText.put("stamina", player.getDisplayName().getString() + "'s Stamina: " + stamina);
+        statText.put("stamina", player.getDisplayName().getString() + "'s Gender: " + gender);
+        return statText;
     }
 
     @Override
@@ -148,6 +198,20 @@ public class StatImpl implements IImpl {
         stamina = compoundTag.getInt(NBT_KEY_STAMINA);
         gender = compoundTag.getString(NBT_KEY_GENDER);
 
+    }
+
+    public static int generateRandomInt(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
+    }
+
+    public static String randomGender() {
+        Random random = new Random();
+        if ((random.nextInt(3 - 1) + 1) == 1) {
+            return "male";
+        } else {
+            return "female";
+        }
     }
 
 

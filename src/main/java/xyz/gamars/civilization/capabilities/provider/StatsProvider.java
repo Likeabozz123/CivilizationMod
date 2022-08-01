@@ -12,7 +12,7 @@ import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.capabilities.CivCapabilities;
 import xyz.gamars.civilization.capabilities.impl.StatImpl;
 
-public class StatProvider implements ICapabilitySerializable<CompoundTag> {
+public class StatsProvider implements ICapabilitySerializable<CompoundTag> {
     public static final ResourceLocation IDENTIFIER = new ResourceLocation(Civilization.MOD_ID, StatImpl.NBT_KEY_STATS);
 
     private final StatImpl backend = new StatImpl();

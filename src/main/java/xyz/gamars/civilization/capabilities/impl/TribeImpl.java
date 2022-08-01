@@ -3,11 +3,14 @@ package xyz.gamars.civilization.capabilities.impl;
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import xyz.gamars.civilization.libs.VNameGenerator.generator.CombinatorialGenerator;
+
+import java.util.Random;
 
 public class TribeImpl implements IImpl {
 
     public static final String NBT_KEY_TRIBE_NAME = "tribe";
-    private String tribeName = "TribeName";
+    private String tribeName = generateTribeName(generateRandomInt(4, 10));
 
     public String getTribe() {
         return tribeName;
@@ -15,6 +18,10 @@ public class TribeImpl implements IImpl {
 
     public void setTribe(String tribeName) {
         this.tribeName = tribeName;
+    }
+
+    public void resetTribe() {
+        tribeName = generateTribeName(generateRandomInt(4, 10));
     }
 
     @Override
@@ -25,11 +32,6 @@ public class TribeImpl implements IImpl {
     @Override
     public String getText(Player player) {
         return player.getDisplayName().getString() + "'s Tribe: " + tribeName;
-    }
-
-    @Override
-    public void copyFrom(IImpl source) {
-        this.tribeName = ((TribeImpl) source).tribeName;
     }
 
     @Override
@@ -44,4 +46,16 @@ public class TribeImpl implements IImpl {
         tribeName = compoundTag.getString(NBT_KEY_TRIBE_NAME);
     }
 
+    public String generateTribeName(int length) {
+        final var beginnings = new String[] { "th", "bo", "ja", "fu" };
+        final var middles = new String[] { "la", "su", "dhu", "li", "da", "zk", "fr"};
+        final var endings = new String[] { "r", "t", "gh", "or", "al", "ar", "is" };
+        final var generator = new CombinatorialGenerator(beginnings, middles, endings);
+        return generator.generate(length);
+    }
+
+    public static int generateRandomInt(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
+    }
 }

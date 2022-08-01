@@ -1,7 +1,10 @@
 package xyz.gamars.civilization.listener;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -9,14 +12,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.capabilities.CivCapabilities;
-import xyz.gamars.civilization.capabilities.impl.AgeImpl;
-import xyz.gamars.civilization.capabilities.impl.StatImpl;
-import xyz.gamars.civilization.capabilities.impl.ThirstImpl;
-import xyz.gamars.civilization.capabilities.impl.TribeImpl;
-import xyz.gamars.civilization.capabilities.provider.AgeProvider;
-import xyz.gamars.civilization.capabilities.provider.StatProvider;
-import xyz.gamars.civilization.capabilities.provider.ThirstProvider;
-import xyz.gamars.civilization.capabilities.provider.TribeProvider;
+import xyz.gamars.civilization.capabilities.impl.*;
+import xyz.gamars.civilization.capabilities.provider.*;
 
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID)
 public class RegisterCapabilitiesListener {
@@ -28,21 +25,15 @@ public class RegisterCapabilitiesListener {
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){
         if (event.getObject() instanceof Player) {
             // AGE
-            if (!event.getObject().getCapability(CivCapabilities.AGE).isPresent()) {
-                event.addCapability(AgeProvider.IDENTIFIER, new AgeProvider());
-            }
+            attachCapability(event, CivCapabilities.AGE, AgeProvider.IDENTIFIER, new AgeProvider());
             // TRIBE
-            if (!event.getObject().getCapability(CivCapabilities.TRIBE).isPresent()) {
-                event.addCapability(TribeProvider.IDENTIFIER, new TribeProvider());
-            }
+            attachCapability(event, CivCapabilities.TRIBE, TribeProvider.IDENTIFIER, new TribeProvider());
             // THIRST
-            if (!event.getObject().getCapability(CivCapabilities.THIRST).isPresent()) {
-                event.addCapability(ThirstProvider.IDENTIFIER, new ThirstProvider());
-            }
+            attachCapability(event, CivCapabilities.THIRST, ThirstProvider.IDENTIFIER, new ThirstProvider());
             // STATS
-            if (!event.getObject().getCapability(CivCapabilities.STATS).isPresent()) {
-                event.addCapability(StatProvider.IDENTIFIER, new StatProvider());
-            }
+            attachCapability(event, CivCapabilities.STATS, StatsProvider.IDENTIFIER, new StatsProvider());
+            // TEMPERATURE
+            attachCapability(event, CivCapabilities.TEMPERATURE, TemperatureProvider.IDENTIFIER, new TemperatureProvider());
 
         }
     }
@@ -54,10 +45,10 @@ public class RegisterCapabilitiesListener {
             // create an automated for loop to prevent rewriting the same code
 
             // AGE
-            event.getOriginal().getCapability(CivCapabilities.AGE).ifPresent(originalAge -> {
-                originalAge.print(event.getOriginal());
-                event.getEntity().getCapability(CivCapabilities.AGE).ifPresent(newAge -> {
-                    newAge.setAge(originalAge.getAge());
+            event.getOriginal().getCapability(CivCapabilities.AGE).ifPresent(original -> {
+                original.print(event.getOriginal());
+                event.getEntity().getCapability(CivCapabilities.AGE).ifPresent(neww -> {
+                    neww.setAge(original.getAge());
                 });
             });
             // TRIBE
@@ -72,6 +63,13 @@ public class RegisterCapabilitiesListener {
                 originalThirst.print(event.getOriginal());
                 event.getEntity().getCapability(CivCapabilities.THIRST).ifPresent(newThirst -> {
                     newThirst.setThirst(originalThirst.getThirst());
+                });
+            });
+            // TEMPERATURE
+            event.getOriginal().getCapability(CivCapabilities.TEMPERATURE).ifPresent(originalThirst -> {
+                originalThirst.print(event.getOriginal());
+                event.getEntity().getCapability(CivCapabilities.TEMPERATURE).ifPresent(newThirst -> {
+                    newThirst.setTemperature(originalThirst.getTemperature());
                 });
             });
             // STATS
@@ -99,6 +97,13 @@ public class RegisterCapabilitiesListener {
         event.register(TribeImpl.class);
         event.register(ThirstImpl.class);
         event.register(StatImpl.class);
+        event.register(TemperatureImpl.class);
+    }
+
+    public static void attachCapability(AttachCapabilitiesEvent<Entity> event, Capability<?> capability, ResourceLocation identifier, ICapabilityProvider provider) {
+        if (!event.getObject().getCapability(capability).isPresent()) {
+            event.addCapability(identifier, provider);
+        }
     }
 
 }

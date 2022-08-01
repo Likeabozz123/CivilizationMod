@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.entities.CivEntityTypes;
+import xyz.gamars.civilization.init.BlockInit;
 import xyz.gamars.civilization.init.ItemInit;
 
 public class ModLangProvider extends LanguageProvider {
@@ -13,6 +14,22 @@ public class ModLangProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+
+        addCreativeTab("items_tab", "Items Tab");
+        addCreativeTab("blocks_tab", "Blocks Tab");
+        addCreativeTab("armor_tab", "Armor Tab");
+        addCreativeTab("tools_tab", "Tools Tab");
+        addCreativeTab("foods_tab", "Foods Tab");
+        addCreativeTab("advanced_blocks_tab", "Advanced Blocks Tab");
+        addCreativeTab("advanced_items_tab", "Advanced Items Tab");
+
+        add(BlockInit.SAKURA_LOG.get(), "Sakura Log");
+        add(BlockInit.SAKURA_WOOD.get(), "Sakura Wood");
+        add(BlockInit.SAKURA_LEAVES.get(), "Sakura Leaves");
+        add(BlockInit.DEAD_SAKURA_LEAVES.get(), "Dead Sakura Leaves");
+        add(BlockInit.FLOWERING_SAKURA_LEAVES_OVERLAY.get(), "Flowering Sakura Leaves");
+        add(BlockInit.SAKURA_VINES.get(), "Sakura Vines");
+        add(BlockInit.SAKURA_SAPLING.get(), "Sakura Sapling");
 
         add(ItemInit.DEBUG_ITEM.get(), "Debug Item");
         add(ItemInit.PLAYER_LIKE_SPAWN_EGG.get(), "Player Spawn Egg");

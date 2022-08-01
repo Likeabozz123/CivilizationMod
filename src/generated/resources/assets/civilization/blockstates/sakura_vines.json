@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "civilization:block/sakura_vines",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "civilization:block/sakura_vines"
+    },
+    "facing=south": {
+      "model": "civilization:block/sakura_vines",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "civilization:block/sakura_vines",
+      "y": 270
+    }
+  }
+}

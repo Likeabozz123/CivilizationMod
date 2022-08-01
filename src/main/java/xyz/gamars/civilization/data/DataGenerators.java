@@ -11,6 +11,7 @@ import xyz.gamars.civilization.data.generators.ModRecipeProvider;
 import xyz.gamars.civilization.data.generators.loottables.ModLootTableProvider;
 import xyz.gamars.civilization.data.generators.models.ModBlockStateProvider;
 import xyz.gamars.civilization.data.generators.models.ModItemModelProvider;
+import xyz.gamars.civilization.data.generators.tags.ModBiomeTags;
 import xyz.gamars.civilization.data.generators.tags.ModBlockTags;
 import xyz.gamars.civilization.data.generators.tags.ModItemTags;
 
@@ -28,6 +29,7 @@ public class DataGenerators {
             ModBlockTags blockTags = new ModBlockTags(generator, existingFileHelper);
             generator.addProvider(true, blockTags);
             generator.addProvider(true, new ModItemTags(generator, blockTags, existingFileHelper));
+            generator.addProvider(true, new ModBiomeTags(generator, existingFileHelper));
         }
 
         if(event.includeClient()) {

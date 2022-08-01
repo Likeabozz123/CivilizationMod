@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "civilization:block/flowering_sakura_leaves_overlay"
+  }
+}

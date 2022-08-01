@@ -1,6 +1,8 @@
 package xyz.gamars.civilization;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,6 +15,7 @@ import software.bernie.geckolib3.GeckoLib;
 import xyz.gamars.civilization.entities.CivEntityTypes;
 import xyz.gamars.civilization.entities.barbarian.BarbarianRenderer;
 import xyz.gamars.civilization.entities.playerlike.PlayerLikeRenderer;
+import xyz.gamars.civilization.init.BlockInit;
 import xyz.gamars.civilization.init.ItemInit;
 import xyz.gamars.civilization.network.NetworkHandler;
 
@@ -30,6 +33,7 @@ public class Civilization {
         // Register ourselves for server and other game events we are interested in
 
         ItemInit.ITEMS.register(modEventBus);
+        BlockInit.BLOCKS.register(modEventBus);
         CivEntityTypes.ENTITIY_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::clientSetup);
@@ -44,6 +48,11 @@ public class Civilization {
     private void clientSetup(final FMLClientSetupEvent event) {
         EntityRenderers.register(CivEntityTypes.PLAYER_LIKE.get(), PlayerLikeRenderer::new);
         EntityRenderers.register(CivEntityTypes.BARBARIAN.get(), BarbarianRenderer::new);
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

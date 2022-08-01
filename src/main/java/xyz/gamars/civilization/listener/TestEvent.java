@@ -7,7 +7,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.apache.logging.log4j.core.jmx.Server;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.capabilities.CivCapabilities;
 import xyz.gamars.civilization.network.NetworkHandler;

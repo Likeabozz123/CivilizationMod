@@ -23,12 +23,12 @@ public class PlayerLikeRenderer extends GeoEntityRenderer<PlayerLikeEntity> {
 
 
     public static final Map<PlayerLikeVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(PlayerLikeVariant.class), (p_114874_) -> {
-                p_114874_.put(PlayerLikeVariant.DEFAULT,
+            Util.make(Maps.newEnumMap(PlayerLikeVariant.class), (consumer) -> {
+                consumer.put(PlayerLikeVariant.DEFAULT,
                         new ResourceLocation(Civilization.MOD_ID, "textures/entity/player_like/likeabozz123.png"));
-                p_114874_.put(PlayerLikeVariant.JEFFCHICKEN13,
+                consumer.put(PlayerLikeVariant.JEFFCHICKEN13,
                         new ResourceLocation(Civilization.MOD_ID, "textures/entity/player_like/jeffchicken13.png"));
-                p_114874_.put(PlayerLikeVariant.HEROBRINE,
+                consumer.put(PlayerLikeVariant.HEROBRINE,
                         new ResourceLocation(Civilization.MOD_ID, "textures/entity/player_like/herobrine.png"));
             });
 
@@ -45,6 +45,7 @@ public class PlayerLikeRenderer extends GeoEntityRenderer<PlayerLikeEntity> {
             stack.scale(0.4F, 0.4F, 0.4F);
         } else {
             stack.scale(0.95f, 0.95f, 0.95f); // ACTUAL SCALE OF MODEL
+            // MAKE MODEL SIZE CHANGEABLE IN GAME BY GUI
         }
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }

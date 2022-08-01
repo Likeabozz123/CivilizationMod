@@ -7,8 +7,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import xyz.gamars.civilization.Civilization;
-import xyz.gamars.civilization.network.packets.PacketPrintAge;
-import xyz.gamars.civilization.network.packets.PacketSyncAgeToClient;
+import xyz.gamars.civilization.network.packets.*;
 
 public class NetworkHandler {
 
@@ -29,12 +28,27 @@ public class NetworkHandler {
         INSTANCE.messageBuilder(PacketPrintAge.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PacketPrintAge::new)
                 .encoder(PacketPrintAge::toBytes)
-                .consumer(PacketPrintAge::handle)
+                .consumerMainThread(PacketPrintAge::handle)
                 .add();
         INSTANCE.messageBuilder(PacketSyncAgeToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketSyncAgeToClient::new)
                 .encoder(PacketSyncAgeToClient::toBytes)
-                .consumer(PacketSyncAgeToClient::handle)
+                .consumerMainThread(PacketSyncAgeToClient::handle)
+                .add();
+        INSTANCE.messageBuilder(PacketSyncTempToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncTempToClient::new)
+                .encoder(PacketSyncTempToClient::toBytes)
+                .consumerMainThread(PacketSyncTempToClient::handle)
+                .add();
+        INSTANCE.messageBuilder(PacketSyncStatsToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncStatsToClient::new)
+                .encoder(PacketSyncStatsToClient::toBytes)
+                .consumerMainThread(PacketSyncStatsToClient::handle)
+                .add();
+        INSTANCE.messageBuilder(PacketSyncTribeToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncTribeToClient::new)
+                .encoder(PacketSyncTribeToClient::toBytes)
+                .consumerMainThread(PacketSyncTribeToClient::handle)
                 .add();
     }
 

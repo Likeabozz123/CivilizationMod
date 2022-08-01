@@ -2,11 +2,7 @@ package xyz.gamars.civilization.capabilities.impl;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import org.apache.logging.log4j.core.jmx.Server;
-import xyz.gamars.civilization.network.NetworkHandler;
-import xyz.gamars.civilization.network.packets.PacketSyncAgeToClient;
 
 import java.util.Random;
 
@@ -17,6 +13,7 @@ public class AgeImpl implements IImpl {
 
     public static final String NBT_KEY_AGE = "age";
     public static final String NBT_KEY_MAX_AGE = "max_age";
+    public static final String NBT_KEY_DAYS_PASSED = "days_passed";
     private int age = 1;
     private int maxAge = generateRandomAge(AGE_MIN, AGE_LIMIT);
 
@@ -53,17 +50,13 @@ public class AgeImpl implements IImpl {
     }
 
     public boolean isOld() {
-        return age >= 50;
-    }
-
-    @Override
-    public void copyFrom(IImpl source) { // FIND THE PROPER COPY FROM THAT YOU SAW BEFORE
-        this.age = ((AgeImpl) source).age;
+        return age >= maxAge * 0.7;
     }
 
     @Override
     public void print(Player player) {
         LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Age: " + age);
+        LogUtils.getLogger().info(player.getDisplayName().getString() + "'s Max Age: " + maxAge);
     }
 
     @Override

@@ -36,11 +36,6 @@ public class ThirstImpl implements IImpl {
     }
 
     @Override
-    public void copyFrom(IImpl source) {
-        this.thirst = ((ThirstImpl) source).thirst;
-    }
-
-    @Override
     public CompoundTag serializeNBT() {
         CompoundTag compoundTag = new CompoundTag();
         compoundTag.putInt(NBT_KEY_THIRST, thirst);

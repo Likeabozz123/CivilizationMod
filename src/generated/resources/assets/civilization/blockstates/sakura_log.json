@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "civilization:block/sakura_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "civilization:block/sakura_log"
+    },
+    "axis=z": {
+      "model": "civilization:block/sakura_log_horizontal",
+      "x": 90
+    }
+  }
+}

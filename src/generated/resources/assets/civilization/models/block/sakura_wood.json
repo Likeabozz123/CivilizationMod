@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "civilization:block/sakura_wood",
+    "side": "civilization:block/sakura_wood"
+  }
+}

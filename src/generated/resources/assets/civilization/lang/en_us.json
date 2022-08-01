@@ -1,7 +1,21 @@
 {
+  "block.civilization.dead_sakura_leaves": "Dead Sakura Leaves",
+  "block.civilization.flowering_sakura_leaves_overlay": "Flowering Sakura Leaves",
+  "block.civilization.sakura_leaves": "Sakura Leaves",
+  "block.civilization.sakura_log": "Sakura Log",
+  "block.civilization.sakura_sapling": "Sakura Sapling",
+  "block.civilization.sakura_vines": "Sakura Vines",
+  "block.civilization.sakura_wood": "Sakura Wood",
   "entity.civilization.barbarian": "Barbarian",
   "entity.civilization.player_like": "PlayerLike",
   "item.civilization.barbarian_spawn_egg": "Barbarian Spawn Egg",
   "item.civilization.debug_item": "Debug Item",
-  "item.civilization.player_spawn_egg": "Player Spawn Egg"
+  "item.civilization.player_spawn_egg": "Player Spawn Egg",
+  "itemGroup.advanced_blocks_tab": "Advanced Blocks Tab",
+  "itemGroup.advanced_items_tab": "Advanced Items Tab",
+  "itemGroup.armor_tab": "Armor Tab",
+  "itemGroup.blocks_tab": "Blocks Tab",
+  "itemGroup.foods_tab": "Foods Tab",
+  "itemGroup.items_tab": "Items Tab",
+  "itemGroup.tools_tab": "Tools Tab"
 }

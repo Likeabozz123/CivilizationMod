@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "civilization:block/flowering_sakura_leaves_overlay",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "civilization:block/flowering_sakura_leaves_overlay"
+    },
+    "facing=south": {
+      "model": "civilization:block/flowering_sakura_leaves_overlay",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "civilization:block/flowering_sakura_leaves_overlay",
+      "y": 270
+    }
+  }
+}

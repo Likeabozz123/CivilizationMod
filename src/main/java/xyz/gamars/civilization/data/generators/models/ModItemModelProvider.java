@@ -8,6 +8,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 import xyz.gamars.civilization.Civilization;
+import xyz.gamars.civilization.init.BlockInit;
 import xyz.gamars.civilization.init.ItemInit;
 
 public class ModItemModelProvider extends ItemModelProvider {
@@ -26,8 +27,13 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(ItemInit.DEBUG_ITEM, itemHandheld);
         spawnEggBuilder(ItemInit.PLAYER_LIKE_SPAWN_EGG, itemGenerated);
         spawnEggBuilder(ItemInit.BARBARIAN_SPAWN_EGG, itemGenerated);
-
-
+        blockBuilder(BlockInit.SAKURA_LOG);
+        blockBuilder(BlockInit.SAKURA_WOOD);
+        blockBuilder(BlockInit.SAKURA_LEAVES);
+        blockBuilder(BlockInit.DEAD_SAKURA_LEAVES);
+        blockBuilder(BlockInit.SAKURA_SAPLING, itemGenerated);
+        blockBuilder(BlockInit.SAKURA_VINES, itemGenerated);
+        blockBuilder(BlockInit.FLOWERING_SAKURA_LEAVES_OVERLAY, itemGenerated);
 
     }
 
@@ -52,6 +58,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder blockBuilder(RegistryObject item) {
         String itemName = item.getId().toString().split(":")[1];
         return withExistingParent(itemName, modLoc("block/" + itemName));
+    }
+
+    private ItemModelBuilder blockBuilder(RegistryObject item, ModelFile parent) {
+        String itemName = item.getId().toString().split(":")[1];
+        return getBuilder(itemName).parent(parent).texture("layer0", "block/" + itemName);
     }
 
 

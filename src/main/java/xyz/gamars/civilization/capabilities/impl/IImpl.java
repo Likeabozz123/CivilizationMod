@@ -6,7 +6,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public interface IImpl extends INBTSerializable<CompoundTag> {
 
-    void copyFrom(IImpl source);
+    // void copyFrom(IImpl source);
     void print(Player player);
     String getText(Player player);
 
