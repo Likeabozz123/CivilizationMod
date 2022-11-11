@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import xyz.gamars.civilization.HelperMethods;
 import xyz.gamars.civilization.capabilities.CivCapabilities;
 import xyz.gamars.civilization.network.NetworkHandler;
 import xyz.gamars.civilization.network.packets.PacketSyncStatsToClient;
@@ -24,14 +25,14 @@ public class StatImpl implements IImpl {
     public static final String NBT_KEY_STAMINA = "stamina";
     public static final String NBT_KEY_GENDER = "gender";
     public static final String NBT_KEY_STATS = "stats";
-    private int maxHealth = generateRandomInt(10, 30);
-    private int intelligence = generateRandomInt(10, 30);
-    private int wisdom = generateRandomInt(10, 30);
-    private int racism = generateRandomInt(10, 30);
-    private int charisma = generateRandomInt(10, 30);
-    private int strength = generateRandomInt(10, 30);
-    private int speed = generateRandomInt(10, 30);
-    private int stamina = generateRandomInt(10, 30);
+    private int maxHealth = HelperMethods.generateRandomNum(10, 30);
+    private int intelligence = HelperMethods.generateRandomNum(10, 30);
+    private int wisdom = HelperMethods.generateRandomNum(10, 30);
+    private int racism = HelperMethods.generateRandomNum(10, 30);
+    private int charisma = HelperMethods.generateRandomNum(10, 30);
+    private int strength = HelperMethods.generateRandomNum(10, 30);
+    private int speed = HelperMethods.generateRandomNum(10, 30);
+    private int stamina = HelperMethods.generateRandomNum(10, 30);
     private String gender = randomGender();
 
     public int getMaxHealth() {
@@ -107,30 +108,15 @@ public class StatImpl implements IImpl {
     }
 
     public void resetStats() {
-        maxHealth = generateRandomInt(10, 40);
-        intelligence = generateRandomInt(10, 30);
-        wisdom = generateRandomInt(10, 30);
-        racism = generateRandomInt(10, 30);
-        charisma = generateRandomInt(10, 30);
-        strength = generateRandomInt(10, 30);
-        speed = generateRandomInt(10, 30);
-        stamina = generateRandomInt(10, 30);
+        maxHealth = HelperMethods.generateRandomNum(10, 40);
+        intelligence = HelperMethods.generateRandomNum(10, 30);
+        wisdom = HelperMethods.generateRandomNum(10, 30);
+        racism = HelperMethods.generateRandomNum(10, 30);
+        charisma = HelperMethods.generateRandomNum(10, 30);
+        strength = HelperMethods.generateRandomNum(10, 30);
+        speed = HelperMethods.generateRandomNum(10, 30);
+        stamina = HelperMethods.generateRandomNum(10, 30);
         gender = randomGender();
-    }
-
-    public void syncStats(ServerPlayer player) {
-        player.getCapability(CivCapabilities.STATS).ifPresent(stat -> {
-            NetworkHandler.sendToPlayer(new PacketSyncStatsToClient(
-                    stat.getMaxHealth(),
-                    stat.getIntelligence(),
-                    stat.getWisdom(),
-                    stat.getRacism(),
-                    stat.getCharisma(),
-                    stat.getStrength(),
-                    stat.getSpeed(),
-                    stat.getStamina(),
-                    stat.getGender()), (ServerPlayer) player);
-        });
     }
 
     public void update(ServerPlayer player) {
@@ -198,11 +184,6 @@ public class StatImpl implements IImpl {
         stamina = compoundTag.getInt(NBT_KEY_STAMINA);
         gender = compoundTag.getString(NBT_KEY_GENDER);
 
-    }
-
-    public static int generateRandomInt(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min) + min;
     }
 
     public static String randomGender() {

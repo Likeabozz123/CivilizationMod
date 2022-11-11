@@ -3,14 +3,13 @@ package xyz.gamars.civilization.capabilities.impl;
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import xyz.gamars.civilization.HelperMethods;
 import xyz.gamars.civilization.libs.VNameGenerator.generator.CombinatorialGenerator;
-
-import java.util.Random;
 
 public class TribeImpl implements IImpl {
 
     public static final String NBT_KEY_TRIBE_NAME = "tribe";
-    private String tribeName = generateTribeName(generateRandomInt(4, 10));
+    private String tribeName = generateTribeName(HelperMethods.generateRandomNum(4, 10));
 
     public String getTribe() {
         return tribeName;
@@ -21,7 +20,7 @@ public class TribeImpl implements IImpl {
     }
 
     public void resetTribe() {
-        tribeName = generateTribeName(generateRandomInt(4, 10));
+        tribeName = generateTribeName(HelperMethods.generateRandomNum(4, 10));
     }
 
     @Override
@@ -54,8 +53,4 @@ public class TribeImpl implements IImpl {
         return generator.generate(length);
     }
 
-    public static int generateRandomInt(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min) + min;
-    }
 }

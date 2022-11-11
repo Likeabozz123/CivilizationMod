@@ -15,6 +15,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+/* base class for all mobs inside this mod */
 public class CivMob extends Animal implements IAnimatable {
 
     private AnimationFactory factory;
@@ -50,14 +51,17 @@ public class CivMob extends Animal implements IAnimatable {
         return null;
     }
 
+    /* returns if currently talking to a player */
     public boolean isTalking() {
         return this.talkingPlayer != null;
     }
 
+    /* sets the player the mob/npc is interacting with */
     public void setTalkingPlayer(Player player) {
         this.talkingPlayer = player;
     }
 
+    /* returns the player they are interacting with */
     public Player getTalkingPlayer() {
         return this.talkingPlayer;
     }

@@ -1,4 +1,4 @@
-package xyz.gamars.civilization.network.data;
+package xyz.gamars.civilization.network.clientdata;
 
 public class ClientTempData {
 

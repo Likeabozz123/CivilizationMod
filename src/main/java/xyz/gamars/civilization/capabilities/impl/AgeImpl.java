@@ -3,8 +3,7 @@ package xyz.gamars.civilization.capabilities.impl;
 import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
-
-import java.util.Random;
+import xyz.gamars.civilization.HelperMethods;
 
 public class AgeImpl implements IImpl {
 
@@ -15,7 +14,7 @@ public class AgeImpl implements IImpl {
     public static final String NBT_KEY_MAX_AGE = "max_age";
     public static final String NBT_KEY_DAYS_PASSED = "days_passed";
     private int age = 1;
-    private int maxAge = generateRandomAge(AGE_MIN, AGE_LIMIT);
+    private int maxAge = HelperMethods.generateRandomNum(AGE_MIN, AGE_LIMIT);
 
     public int getAge() {
         return this.age;
@@ -46,7 +45,7 @@ public class AgeImpl implements IImpl {
     }
 
     public void resetMaxAge() {
-        this.maxAge = generateRandomAge(AGE_MIN, AGE_LIMIT);
+        this.maxAge = HelperMethods.generateRandomNum(AGE_MIN, AGE_LIMIT);
     }
 
     public boolean isOld() {
@@ -76,11 +75,6 @@ public class AgeImpl implements IImpl {
     public void deserializeNBT(CompoundTag compoundTag) {
         age = compoundTag.getInt(NBT_KEY_AGE);
         maxAge = compoundTag.getInt(NBT_KEY_MAX_AGE);
-    }
-
-    private int generateRandomAge(int minAge, int maxAge) {
-        Random random = new Random();
-        return random.nextInt(maxAge - minAge) + minAge;
     }
 
 }

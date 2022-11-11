@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.objects.gui.CustomImageButton;
 
+/* test gui */
 public class TestGui extends Screen {
 
     public TestGui() {

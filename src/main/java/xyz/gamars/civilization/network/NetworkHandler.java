@@ -25,11 +25,15 @@ public class NetworkHandler {
     );
 
     public static void register() {
+
+        /* print age packet */
         INSTANCE.messageBuilder(PacketPrintAge.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PacketPrintAge::new)
                 .encoder(PacketPrintAge::toBytes)
                 .consumerMainThread(PacketPrintAge::handle)
                 .add();
+
+        /* registers syncing packets */
         INSTANCE.messageBuilder(PacketSyncAgeToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketSyncAgeToClient::new)
                 .encoder(PacketSyncAgeToClient::toBytes)
@@ -50,12 +54,18 @@ public class NetworkHandler {
                 .encoder(PacketSyncTribeToClient::toBytes)
                 .consumerMainThread(PacketSyncTribeToClient::handle)
                 .add();
+        INSTANCE.messageBuilder(PacketSyncThirstToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncThirstToClient::new)
+                .encoder(PacketSyncThirstToClient::toBytes)
+                .consumerMainThread(PacketSyncThirstToClient::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {
         INSTANCE.sendToServer(message);
     }
 
+    /* sends a packet to the player */
     public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {
         INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
     }

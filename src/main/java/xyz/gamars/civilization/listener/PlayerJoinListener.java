@@ -10,28 +10,24 @@ import xyz.gamars.civilization.capabilities.CivCapabilities;
 import xyz.gamars.civilization.network.NetworkHandler;
 import xyz.gamars.civilization.network.packets.PacketSyncAgeToClient;
 import xyz.gamars.civilization.network.packets.PacketSyncStatsToClient;
+import xyz.gamars.civilization.network.packets.PacketSyncThirstToClient;
 
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID)
 public class PlayerJoinListener {
 
+    /* updates the client side data on join by syncing packets */
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         ServerPlayer player = (ServerPlayer) event.getEntity();
         player.getCapability(CivCapabilities.STATS).ifPresent(stat -> {
             player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(stat.getMaxHealth());
-            NetworkHandler.sendToPlayer(new PacketSyncStatsToClient(
-                    stat.getMaxHealth(),
-                    stat.getIntelligence(),
-                    stat.getWisdom(),
-                    stat.getRacism(),
-                    stat.getCharisma(),
-                    stat.getStrength(),
-                    stat.getSpeed(),
-                    stat.getStamina(),
-                    stat.getGender()), player);
+            NetworkHandler.sendToPlayer(new PacketSyncStatsToClient(stat), player);
         });
         player.getCapability(CivCapabilities.AGE).ifPresent(age -> {
             NetworkHandler.sendToPlayer(new PacketSyncAgeToClient(age.getAge()), player);
+        });
+        player.getCapability(CivCapabilities.THIRST).ifPresent(thirst -> {
+            NetworkHandler.sendToPlayer(new PacketSyncThirstToClient(thirst.getThirst()), player);
         });
     }
 

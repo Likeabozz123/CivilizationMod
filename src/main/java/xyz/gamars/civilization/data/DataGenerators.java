@@ -15,6 +15,7 @@ import xyz.gamars.civilization.data.generators.tags.ModBiomeTags;
 import xyz.gamars.civilization.data.generators.tags.ModBlockTags;
 import xyz.gamars.civilization.data.generators.tags.ModItemTags;
 
+/* data generators */
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
 

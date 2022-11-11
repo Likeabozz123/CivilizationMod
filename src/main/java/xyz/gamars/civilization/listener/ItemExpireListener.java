@@ -9,6 +9,7 @@ import xyz.gamars.civilization.init.ItemInit;
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID)
 public class ItemExpireListener {
 
+    /* item expire listener */
     @SubscribeEvent
     public static void onItemExpire(ItemExpireEvent event) {
         if (event.getEntity().getItem().is(ItemInit.DEBUG_ITEM.get())) {

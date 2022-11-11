@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.objects.entities.CivMob;
 
+/* npc screen that displays when interacting with a npc */
 public class NPCScreen extends Screen {
 
     private Player player;
@@ -25,6 +26,7 @@ public class NPCScreen extends Screen {
     @Override
     protected void init() {
 
+        /* buttons for the npc screen */
         addRenderableWidget(new Button(555, 10, 80, 20, Component.literal("Interact"), button -> {
             // OPEN INTERACTION SCREEN
             openInteractionMenu(player, civMob);
@@ -40,7 +42,7 @@ public class NPCScreen extends Screen {
         }));
         addRenderableWidget(new Button(555, 76, 80, 20, Component.literal("Move Freely"), button -> {
             // CODE HERE
-            // setStayAtPosition(true);
+            // setStayAtPosition(false);
         }));
         addRenderableWidget(new Button(555, 98, 80, 20, Component.literal("Trade"), button -> {
             // CODE HERE
@@ -58,18 +60,19 @@ public class NPCScreen extends Screen {
 
     }
 
+    /* when the screen is closed */
     @Override
     public void removed() {
         super.removed();
         this.civMob.setTalkingPlayer(null);
     }
 
-
-
+    /* opens the interaction menu with the mob and player  */
     public void openInteractionMenu(Player player, CivMob civMob) {
         minecraft.setScreen(new InteractionScreen(player, civMob));
     }
 
+    /* prevents the game from pausing when interacting with npc */
     @Override
     public boolean isPauseScreen() {
         return false;

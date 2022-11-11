@@ -1,8 +1,5 @@
 package xyz.gamars.civilization;
 
-import com.mojang.logging.LogUtils;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -10,9 +7,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
-import xyz.gamars.civilization.entities.CivEntityTypes;
+import xyz.gamars.civilization.init.CivEntityTypes;
 import xyz.gamars.civilization.entities.barbarian.BarbarianRenderer;
 import xyz.gamars.civilization.entities.playerlike.PlayerLikeRenderer;
 import xyz.gamars.civilization.init.BlockInit;
@@ -21,22 +17,26 @@ import xyz.gamars.civilization.network.NetworkHandler;
 
 @Mod(Civilization.MOD_ID)
 public class Civilization {
-    // Define mod id in a common place for everything to reference
+    /* mod id to reference everywhere else */
     public static final String MOD_ID = "civilization";
-    // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
 
+    /* main mod constructor */
     public Civilization() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus bus = MinecraftForge.EVENT_BUS;
 
-        // Register ourselves for server and other game events we are interested in
-
+        /* registers items from the ItemInit class */
         ItemInit.ITEMS.register(modEventBus);
+
+        /* registers block from the BlockInit class */
         BlockInit.BLOCKS.register(modEventBus);
+
+        /* registers entity types from CivEntityTypes class */
         CivEntityTypes.ENTITIY_TYPES.register(modEventBus);
 
+        /* adds clientSetup to global listeners */
         modEventBus.addListener(this::clientSetup);
+
+        /* adds commonSetup to global listeners */
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -46,16 +46,13 @@ public class Civilization {
 
 
     private void clientSetup(final FMLClientSetupEvent event) {
+        /* register entity renderers */
         EntityRenderers.register(CivEntityTypes.PLAYER_LIKE.get(), PlayerLikeRenderer::new);
         EntityRenderers.register(CivEntityTypes.BARBARIAN.get(), BarbarianRenderer::new);
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SAKURA_LEAVES.get(), RenderType.cutout());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        /* registers the network handler */
         NetworkHandler.register();
     }
 

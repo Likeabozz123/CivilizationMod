@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+/* custom image button object to extend from */
 public class CustomImageButton extends ImageButton {
 
     private final ResourceLocation resourceLocation;

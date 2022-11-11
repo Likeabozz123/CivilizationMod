@@ -21,6 +21,7 @@ public class RegisterCapabilitiesListener {
     // create a capability template? with events preattached?
     // maybe combine age and stats?
 
+    /* attaches capabilities to player */
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){
         if (event.getObject() instanceof Player) {
@@ -38,11 +39,14 @@ public class RegisterCapabilitiesListener {
         }
     }
 
+    /* updates capability data when player clones (respawns/joins) */
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
             event.getOriginal().reviveCaps();
             // create an automated for loop to prevent rewriting the same code
+
+            // make method to simplify it down
 
             // AGE
             event.getOriginal().getCapability(CivCapabilities.AGE).ifPresent(original -> {
@@ -91,6 +95,7 @@ public class RegisterCapabilitiesListener {
         }
     }
 
+    /* register capabilities */
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.register(AgeImpl.class);
@@ -100,7 +105,9 @@ public class RegisterCapabilitiesListener {
         event.register(TemperatureImpl.class);
     }
 
+    /* attach capability method */
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event, Capability<?> capability, ResourceLocation identifier, ICapabilityProvider provider) {
+        /* makes sure that the player doesn't already have the capability */
         if (!event.getObject().getCapability(capability).isPresent()) {
             event.addCapability(identifier, provider);
         }

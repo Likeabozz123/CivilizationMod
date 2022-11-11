@@ -3,7 +3,7 @@ package xyz.gamars.civilization.data.generators;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 import xyz.gamars.civilization.Civilization;
-import xyz.gamars.civilization.entities.CivEntityTypes;
+import xyz.gamars.civilization.init.CivEntityTypes;
 import xyz.gamars.civilization.init.BlockInit;
 import xyz.gamars.civilization.init.ItemInit;
 
@@ -32,6 +32,7 @@ public class ModLangProvider extends LanguageProvider {
         add(BlockInit.SAKURA_SAPLING.get(), "Sakura Sapling");
 
         add(ItemInit.DEBUG_ITEM.get(), "Debug Item");
+        add(ItemInit.BONK_HAMMER.get(), "Bonk Hammer");
         add(ItemInit.PLAYER_LIKE_SPAWN_EGG.get(), "Player Spawn Egg");
         add(ItemInit.BARBARIAN_SPAWN_EGG.get(), "Barbarian Spawn Egg");
 

@@ -2,25 +2,24 @@ package xyz.gamars.civilization.network.packets;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import xyz.gamars.civilization.network.clientdata.ClientTribeData;
+import xyz.gamars.civilization.network.clientdata.ClientThirstData;
 
 import java.util.function.Supplier;
 
-public class PacketSyncTribeToClient {
+public class PacketSyncThirstToClient {
 
-    private final String tribeName;
+    private final int thirst;
 
-    public PacketSyncTribeToClient(String tribeName) {
-        this.tribeName = tribeName;
+    public PacketSyncThirstToClient(int thirst) {
+        this.thirst = thirst;
     }
 
-    public PacketSyncTribeToClient(FriendlyByteBuf buf) {
-        this.tribeName = buf.readUtf();
+    public PacketSyncThirstToClient(FriendlyByteBuf buf) {
+        this.thirst = buf.readInt();
     }
-
 
     public void toBytes(FriendlyByteBuf buf) {
-        buf.writeUtf(tribeName);
+        buf.writeInt(thirst);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -29,10 +28,9 @@ public class PacketSyncTribeToClient {
             // Here we are client side.
             // Be very careful not to access client-only classes here! (like Minecraft) because
             // this packet needs to be available server-side too
-            ClientTribeData.set(tribeName);
+            ClientThirstData.set(thirst);
         });
         return true;
     }
-
 
 }

@@ -15,6 +15,7 @@ import xyz.gamars.civilization.network.packets.PacketSyncAgeToClient;
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID)
 public class TestEvent {
 
+    /* damage living entity event */
     @SubscribeEvent
     public static void hurtEntity(LivingDamageEvent event) {
         if (!event.getEntity().getLevel().isClientSide()) {

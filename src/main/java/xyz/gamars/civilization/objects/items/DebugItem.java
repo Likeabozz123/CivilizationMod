@@ -9,9 +9,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import xyz.gamars.civilization.capabilities.CivCapabilities;
+import xyz.gamars.civilization.network.NetworkHandler;
+import xyz.gamars.civilization.network.packets.PacketSyncStatsToClient;
+import xyz.gamars.civilization.network.packets.PacketSyncThirstToClient;
+import xyz.gamars.civilization.network.packets.PacketSyncTribeToClient;
 
 import java.util.Arrays;
 
+/* debug item that constantly changes functionality used to test stuff */
 public class DebugItem extends Item {
 
     public DebugItem(Properties properties) {
@@ -26,9 +31,15 @@ public class DebugItem extends Item {
                 player.getCapability(CivCapabilities.STATS).ifPresent(stat -> {
                     stat.resetStats();
                     stat.update((ServerPlayer) player);
+                    NetworkHandler.sendToPlayer(new PacketSyncStatsToClient(stat), (ServerPlayer) player);
                 });
-                player.getCapability(CivCapabilities.TRIBE).ifPresent(stat -> {
-                    stat.resetTribe();
+                player.getCapability(CivCapabilities.TRIBE).ifPresent(tribe -> {
+                    tribe.resetTribe();
+                    NetworkHandler.sendToPlayer(new PacketSyncTribeToClient(tribe.getTribe()), (ServerPlayer) player);
+                });
+                player.getCapability(CivCapabilities.THIRST).ifPresent(thirst -> {
+                    thirst.resetThirst();
+                    NetworkHandler.sendToPlayer(new PacketSyncThirstToClient(thirst.getThirst()), (ServerPlayer) player);
                 });
             } else {
                 LogUtils.getLogger().info("Biome Tag's : " + Arrays.toString(player.level.getBiome(player.blockPosition()).getTagKeys().filter(tagKey -> tagKey.location().getNamespace().equalsIgnoreCase("civilization")).toArray()));
@@ -40,6 +51,9 @@ public class DebugItem extends Item {
                 });
                 player.getCapability(CivCapabilities.TRIBE).ifPresent(age -> {
                     age.print(player);
+                });
+                player.getCapability(CivCapabilities.THIRST).ifPresent(thirst -> {
+                    thirst.print(player);
                 });
             }
         }

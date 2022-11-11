@@ -1,4 +1,4 @@
-package xyz.gamars.civilization.entities;
+package xyz.gamars.civilization.init;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -10,6 +10,7 @@ import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.entities.barbarian.BarbarianEntity;
 import xyz.gamars.civilization.entities.playerlike.PlayerLikeEntity;
 
+/* entity types */
 public class CivEntityTypes {
 
     public static final DeferredRegister<EntityType<?>> ENTITIY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Civilization.MOD_ID);

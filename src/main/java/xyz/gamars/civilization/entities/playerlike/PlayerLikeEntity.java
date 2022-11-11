@@ -34,7 +34,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import xyz.gamars.civilization.Civilization;
-import xyz.gamars.civilization.entities.CivEntityTypes;
+import xyz.gamars.civilization.init.CivEntityTypes;
 
 public class PlayerLikeEntity extends TamableAnimal implements IAnimatable {
 
@@ -237,4 +237,5 @@ public class PlayerLikeEntity extends TamableAnimal implements IAnimatable {
     private void setVariant(PlayerLikeVariant variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
+
 }

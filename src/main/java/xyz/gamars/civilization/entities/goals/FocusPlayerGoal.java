@@ -4,6 +4,7 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.player.Player;
 import xyz.gamars.civilization.objects.entities.CivMob;
 
+/* a goal to focus on the player they are currently talking to */
 public class FocusPlayerGoal extends LookAtPlayerGoal {
 
     private CivMob civMob;

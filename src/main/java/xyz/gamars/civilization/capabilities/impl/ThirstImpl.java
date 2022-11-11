@@ -17,12 +17,20 @@ public class ThirstImpl implements IImpl {
         this.thirst = thirst;
     }
 
-    public void addAge(int thirst) {
+    public void addThirst(int thirst) {
         this.thirst += thirst;
     }
 
     public void resetThirst() {
         this.thirst = 100;
+    }
+
+    public void incrementThirst() {
+        thirst++;
+    }
+
+    public void decrementThirst() {
+        thirst--;
     }
 
     @Override

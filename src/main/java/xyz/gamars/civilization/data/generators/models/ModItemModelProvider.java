@@ -25,6 +25,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         // withExistingParent(ItemInit.TEST_ITEM.get().getRegistryName().getPath(), modLoc("item/test_item"));
 
         builder(ItemInit.DEBUG_ITEM, itemHandheld);
+        // builder(ItemInit.BONK_HAMMER, itemGenerated);
+
         spawnEggBuilder(ItemInit.PLAYER_LIKE_SPAWN_EGG, itemGenerated);
         spawnEggBuilder(ItemInit.BARBARIAN_SPAWN_EGG, itemGenerated);
         blockBuilder(BlockInit.SAKURA_LOG);

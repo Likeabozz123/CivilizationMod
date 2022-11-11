@@ -2,7 +2,7 @@ package xyz.gamars.civilization.network.packets;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import xyz.gamars.civilization.network.data.ClientAgeData;
+import xyz.gamars.civilization.network.clientdata.ClientAgeData;
 
 import java.util.function.Supplier;
 

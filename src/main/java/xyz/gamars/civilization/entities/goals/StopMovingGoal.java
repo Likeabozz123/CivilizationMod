@@ -6,6 +6,7 @@ import xyz.gamars.civilization.objects.entities.CivMob;
 
 import java.util.EnumSet;
 
+/* prevents the mob from moving when interacting with player */
 public class StopMovingGoal extends Goal {
 
     private CivMob civMob;

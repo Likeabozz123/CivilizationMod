@@ -2,7 +2,8 @@ package xyz.gamars.civilization.network.packets;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import xyz.gamars.civilization.network.data.ClientStatsData;
+import xyz.gamars.civilization.capabilities.impl.StatImpl;
+import xyz.gamars.civilization.network.clientdata.ClientStatsData;
 
 import java.util.function.Supplier;
 
@@ -18,16 +19,16 @@ public class PacketSyncStatsToClient {
     private final int stamina;
     private final String gender;
 
-    public PacketSyncStatsToClient(int maxHealth, int intelligence, int wisdom, int racism, int charisma, int strength, int speed, int stamina, String gender) {
-        this.maxHealth = maxHealth;
-        this.intelligence = intelligence;
-        this.wisdom = wisdom;
-        this.racism = racism;
-        this.charisma = charisma;
-        this.strength = strength;
-        this.speed = speed;
-        this.stamina = stamina;
-        this.gender = gender;
+    public PacketSyncStatsToClient(StatImpl stat) {
+        this.maxHealth = stat.getMaxHealth();
+        this.intelligence = stat.getIntelligence();
+        this.wisdom = stat.getWisdom();
+        this.racism = stat.getWisdom();
+        this.charisma = stat.getCharisma();
+        this.strength = stat.getStrength();
+        this.speed = stat.getSpeed();
+        this.stamina = stat.getStamina();
+        this.gender = stat.getGender();
     }
 
     public PacketSyncStatsToClient(FriendlyByteBuf buf) {

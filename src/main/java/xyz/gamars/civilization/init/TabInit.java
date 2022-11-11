@@ -4,7 +4,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-public class Tabinit {
+/* creative tabs */
+public class TabInit {
 
 
     public static final CreativeModeTab ITEMS_TAB = new CreativeModeTab("items_tab") {
