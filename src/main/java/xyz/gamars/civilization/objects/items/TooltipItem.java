@@ -22,6 +22,7 @@ public class TooltipItem extends Item {
         this.tooltip = "";
     }
 
+
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
         components.add(Component.literal(tooltip));

@@ -1,6 +1,7 @@
 package xyz.gamars.civilization;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -31,7 +32,7 @@ public class Civilization {
         BlockInit.BLOCKS.register(modEventBus);
 
         /* registers entity types from CivEntityTypes class */
-        CivEntityTypes.ENTITIY_TYPES.register(modEventBus);
+        CivEntityTypes.ENTITY_TYPES.register(modEventBus);
 
         /* adds clientSetup to global listeners */
         modEventBus.addListener(this::clientSetup);
@@ -49,6 +50,8 @@ public class Civilization {
         /* register entity renderers */
         EntityRenderers.register(CivEntityTypes.PLAYER_LIKE.get(), PlayerLikeRenderer::new);
         EntityRenderers.register(CivEntityTypes.BARBARIAN.get(), BarbarianRenderer::new);
+
+        EntityRenderers.register(CivEntityTypes.ROCK.get(), ThrownItemRenderer::new);
 
 
     }
