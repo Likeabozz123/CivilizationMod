@@ -12,18 +12,20 @@ import xyz.gamars.civilization.entities.playerlike.PlayerLikeEntity;
 import xyz.gamars.civilization.objects.projectiles.RockProjectile;
 
 /* entity types */
-/* dont forget to render the entity types inside the main class */
+/* don't forget to render the entity types inside the main class */
 public class CivEntityTypes {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Civilization.MOD_ID);
 
 
+    /* projectiles */
     public static final RegistryObject<EntityType<RockProjectile>> ROCK = ENTITY_TYPES.register("rock_projectile",
             () -> EntityType.Builder.<RockProjectile>of(RockProjectile::new, MobCategory.MISC)
                     .sized(0.25F, 0.25F)
                     .clientTrackingRange(4).updateInterval(10)
                     .build(new ResourceLocation(Civilization.MOD_ID, "rock_projectile").toString()));
 
+    /* npc like entities */
     public static final RegistryObject<EntityType<PlayerLikeEntity>> PLAYER_LIKE = ENTITY_TYPES.register("player_like",
             () -> EntityType.Builder.of(PlayerLikeEntity::new, MobCategory.CREATURE)
                     .sized(0.6F, 1.8F) // HITBOX MODEL

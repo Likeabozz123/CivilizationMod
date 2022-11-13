@@ -12,8 +12,10 @@ import xyz.gamars.civilization.data.generators.tags.CivTags;
 import xyz.gamars.civilization.network.NetworkHandler;
 import xyz.gamars.civilization.network.packets.PacketSyncAgeToClient;
 import xyz.gamars.civilization.network.packets.PacketSyncTempToClient;
-import xyz.gamars.civilization.network.packets.PacketSyncThirstToClient;
 
+/**
+ * The type Tick listeners.
+ */
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID)
 public class TickListeners {
 
@@ -27,14 +29,13 @@ public class TickListeners {
 
         serverTickCounter--;
         if (serverTickCounter <= 0) {
-            /* resets tick counter to 5 seconds */
-            serverTickCounter = 100;
+            /* resets tick counter to 10 seconds */
+            serverTickCounter = 200;
             for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
                 /* decrement thirst for when player is sprinting and updates the client */
                 if (player.isSprinting()) {
-                    player.getCapability(CivCapabilities.THIRST).ifPresent(thirst -> {
-                        thirst.decrementThirst();
-                        NetworkHandler.sendToPlayer(new PacketSyncThirstToClient(thirst.getThirst()), player);
+                    player.getCapability(CivCapabilities.HYDRATION).ifPresent(thirst -> {
+                        thirst.decrementHydration(player);
                     });
                 }
             }
@@ -50,14 +51,13 @@ public class TickListeners {
                 daysPassed = 0;
                 for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
                     player.getCapability(CivCapabilities.AGE).ifPresent(age -> {
-                        age.addAge(1);
-                        NetworkHandler.sendToPlayer(new PacketSyncAgeToClient(age.getAge()), player);
+                        age.addAge(1, player);
                         age.print(player);
 
                         /* if the player has reached their limit kill them and reset their age and max age */
                         if (age.isOld()) {
                             player.kill();
-                            age.resetAge();
+                            age.resetAge(player);
                             age.resetMaxAge();
                         }
                     });
@@ -94,34 +94,28 @@ public class TickListeners {
                     ServerPlayer serverPlayer = (ServerPlayer) player;
                     player.getCapability(CivCapabilities.TEMPERATURE).ifPresent(temperature -> {
                         if (extremelyColdBiome) {
-                            temperature.adjustTempTo(30 + armorModifiers(serverPlayer));
-                            NetworkHandler.sendToPlayer(new PacketSyncTempToClient(temperature.getTemperature()), serverPlayer);
+                            temperature.adjustTempTo(30 + armorModifiers(serverPlayer), serverPlayer);
                         }
                         if (coldBiome) {
-                            temperature.adjustTempTo(50 + armorModifiers(serverPlayer));
-                            NetworkHandler.sendToPlayer(new PacketSyncTempToClient(temperature.getTemperature()), serverPlayer);
+                            temperature.adjustTempTo(50 + armorModifiers(serverPlayer), serverPlayer);
                         }
                         if (coolBiome) {
-                            temperature.adjustTempTo(70 + armorModifiers(serverPlayer));
-                            NetworkHandler.sendToPlayer(new PacketSyncTempToClient(temperature.getTemperature()), serverPlayer);
+                            temperature.adjustTempTo(70 + armorModifiers(serverPlayer), serverPlayer);
                         }
                         if (warmBiome) {
-                            temperature.adjustTempTo(80 + armorModifiers(serverPlayer));
-                            NetworkHandler.sendToPlayer(new PacketSyncTempToClient(temperature.getTemperature()), serverPlayer);
+                            temperature.adjustTempTo(80 + armorModifiers(serverPlayer), serverPlayer);
                         }
                         if (hotBiome) {
-                            temperature.adjustTempTo(90 + armorModifiers(serverPlayer));
-                            NetworkHandler.sendToPlayer(new PacketSyncTempToClient(temperature.getTemperature()), serverPlayer);
+                            temperature.adjustTempTo(90 + armorModifiers(serverPlayer), serverPlayer);
                         }
                         if (extremelyHotBiome) {
-                            temperature.adjustTempTo(100 + armorModifiers(serverPlayer));
-                            NetworkHandler.sendToPlayer(new PacketSyncTempToClient(temperature.getTemperature()), serverPlayer);
+                            temperature.adjustTempTo(100 + armorModifiers(serverPlayer), serverPlayer);
                         }
 
                         /* when player is too hot, increase the thirst, and after a certain point they start burning up */
                         if (temperature.getTemperature() >= 90) {
                             // PLAYER IS HOT
-                            // INCREASE THIRST
+                            // INCREASE HYDRATION
                             // IF WAY TOO HOT THEN MAKE THE PLAYER START BURNING
                         }
 
@@ -137,7 +131,13 @@ public class TickListeners {
         }
     }
 
-    /* calculates the armor modifiers for temperatures */
+
+    /**
+     * Calculates the armor offset to the temperature
+     *
+     * @param player the player
+     * @return the temperature offset
+     */
     public static double armorModifiers(Player player) {
 
         // check with tags instead of manually each one

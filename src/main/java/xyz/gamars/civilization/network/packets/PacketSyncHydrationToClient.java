@@ -2,24 +2,24 @@ package xyz.gamars.civilization.network.packets;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import xyz.gamars.civilization.network.clientdata.ClientThirstData;
+import xyz.gamars.civilization.network.clientdata.ClientHydrationData;
 
 import java.util.function.Supplier;
 
-public class PacketSyncThirstToClient {
+public class PacketSyncHydrationToClient {
 
-    private final int thirst;
+    private final int hydration;
 
-    public PacketSyncThirstToClient(int thirst) {
-        this.thirst = thirst;
+    public PacketSyncHydrationToClient(int hydration) {
+        this.hydration = hydration;
     }
 
-    public PacketSyncThirstToClient(FriendlyByteBuf buf) {
-        this.thirst = buf.readInt();
+    public PacketSyncHydrationToClient(FriendlyByteBuf buf) {
+        this.hydration = buf.readInt();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-        buf.writeInt(thirst);
+        buf.writeInt(hydration);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -28,7 +28,7 @@ public class PacketSyncThirstToClient {
             // Here we are client side.
             // Be very careful not to access client-only classes here! (like Minecraft) because
             // this packet needs to be available server-side too
-            ClientThirstData.set(thirst);
+            ClientHydrationData.set(hydration);
         });
         return true;
     }

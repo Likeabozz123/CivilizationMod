@@ -26,7 +26,7 @@ public class LongRangeBonkHammerItem extends SwordItem {
         if (!pLevel.isClientSide) {
             BonkHammerProjectile bonkHammerProjectile = new BonkHammerProjectile(pPlayer, pLevel);
             bonkHammerProjectile.setItem(itemInHand);
-            bonkHammerProjectile.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 10.0F, 1.0F);
+            bonkHammerProjectile.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 10.0F, 0);
             pLevel.addFreshEntity(bonkHammerProjectile);
         }
 

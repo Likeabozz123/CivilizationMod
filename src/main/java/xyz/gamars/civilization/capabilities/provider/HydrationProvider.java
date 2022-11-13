@@ -10,20 +10,20 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.capabilities.CivCapabilities;
-import xyz.gamars.civilization.capabilities.impl.ThirstImpl;
+import xyz.gamars.civilization.capabilities.impl.HydrationImpl;
 
-public class ThirstProvider implements ICapabilitySerializable<CompoundTag> {
+public class HydrationProvider implements ICapabilitySerializable<CompoundTag> {
 
-    public static final ResourceLocation IDENTIFIER = new ResourceLocation(Civilization.MOD_ID, ThirstImpl.NBT_KEY_THIRST);
+    public static final ResourceLocation IDENTIFIER = new ResourceLocation(Civilization.MOD_ID, HydrationImpl.NBT_KEY_HYDRATION);
 
 
-    private final ThirstImpl backend = new ThirstImpl();
-    private final LazyOptional<ThirstImpl> optionalData = LazyOptional.of(() -> backend);
+    private final HydrationImpl backend = new HydrationImpl();
+    private final LazyOptional<HydrationImpl> optionalData = LazyOptional.of(() -> backend);
 
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        return CivCapabilities.THIRST.orEmpty(cap, this.optionalData);
+        return CivCapabilities.HYDRATION.orEmpty(cap, this.optionalData);
     }
 
     void invalidate() {

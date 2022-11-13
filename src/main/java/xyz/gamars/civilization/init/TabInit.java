@@ -15,11 +15,13 @@ public class TabInit {
         }
     };
 
+
     public static final CreativeModeTab BLOCKS_TAB = new CreativeModeTab("blocks_tab") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(BlockInit.SAKURA_LOG.get());
         }
+
     };
 
     public static final CreativeModeTab ARMOR_TAB = new CreativeModeTab("armor_tab") {
@@ -39,7 +41,14 @@ public class TabInit {
     public static final CreativeModeTab FOODS_TAB = new CreativeModeTab("foods_tab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.AIR);
+            return new ItemStack(ItemInit.BANANA.get());
+        }
+    };
+
+    public static final CreativeModeTab DRINKS_TAB = new CreativeModeTab("drinks_tab") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ItemInit.AMBROSIA.get());
         }
     };
 

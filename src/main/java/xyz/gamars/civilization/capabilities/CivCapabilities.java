@@ -10,7 +10,7 @@ public class CivCapabilities {
 
     public static Capability<AgeImpl> AGE = CapabilityManager.get(new CapabilityToken<>(){});
     public static Capability<TribeImpl> TRIBE = CapabilityManager.get(new CapabilityToken<>(){});
-    public static Capability<ThirstImpl> THIRST = CapabilityManager.get(new CapabilityToken<>(){});
+    public static Capability<HydrationImpl> HYDRATION = CapabilityManager.get(new CapabilityToken<>(){});
     public static Capability<TemperatureImpl> TEMPERATURE = CapabilityManager.get(new CapabilityToken<>(){});
     public static Capability<StatImpl> STATS = CapabilityManager.get(new CapabilityToken<>(){});
 

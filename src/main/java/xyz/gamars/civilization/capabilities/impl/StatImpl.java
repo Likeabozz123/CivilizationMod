@@ -33,78 +33,171 @@ public class StatImpl implements IImpl {
     private int stamina = HelperMethods.generateRandomNum(10, 30);
     private String gender = randomGender();
 
+    /**
+     * Gets max health.
+     *
+     * @return the max health
+     */
     public int getMaxHealth() {
         return maxHealth;
     }
 
+    /**
+     * Sets max health.
+     *
+     * @param maxHealth the max health
+     */
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
     }
 
+    /**
+     * Gets intelligence.
+     *
+     * @return the intelligence
+     */
     public int getIntelligence() {
         return intelligence;
     }
 
+    /**
+     * Sets intelligence.
+     *
+     * @param intelligence the intelligence
+     */
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
+    /**
+     * Gets charisma.
+     *
+     * @return the charisma
+     */
     public int getCharisma() {
         return charisma;
     }
 
+    /**
+     * Sets charisma.
+     *
+     * @param charisma the charisma
+     */
     public void setCharisma(int charisma) {
         this.charisma = charisma;
     }
 
+    /**
+     * Gets strength.
+     *
+     * @return the strength
+     */
     public int getStrength() {
         return strength;
     }
 
+    /**
+     * Sets strength.
+     *
+     * @param strength the strength
+     */
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
+    /**
+     * Gets speed.
+     *
+     * @return the speed
+     */
     public int getSpeed() {
         return speed;
     }
 
+    /**
+     * Sets speed.
+     *
+     * @param speed the speed
+     */
     public void setSpeed(int speed) {
         this.speed = speed;
     }
 
+    /**
+     * Gets stamina.
+     *
+     * @return the stamina
+     */
     public int getStamina() {
         return stamina;
     }
 
+    /**
+     * Sets stamina.
+     *
+     * @param stamina the stamina
+     */
     public void setStamina(int stamina) {
         this.stamina = stamina;
     }
 
+    /**
+     * Gets gender.
+     *
+     * @return the gender
+     */
     public String getGender() {
         return gender;
     }
 
+    /**
+     * Sets gender.
+     *
+     * @param gender the gender
+     */
     public void setGender(String gender) {
         this.gender = gender;
     }
 
+    /**
+     * Gets wisdom.
+     *
+     * @return the wisdom
+     */
     public int getWisdom() {
         return wisdom;
     }
 
+    /**
+     * Sets wisdom.
+     *
+     * @param wisdom the wisdom
+     */
     public void setWisdom(int wisdom) {
         this.wisdom = wisdom;
     }
 
+    /**
+     * Gets racism.
+     *
+     * @return the racism
+     */
     public int getRacism() {
         return racism;
     }
 
+    /**
+     * Sets racism.
+     *
+     * @param racism the racism
+     */
     public void setRacism(int racism) {
         this.racism = racism;
     }
 
+    /**
+     * Reset stats.
+     */
     public void resetStats() {
         maxHealth = HelperMethods.generateRandomNum(10, 40);
         intelligence = HelperMethods.generateRandomNum(10, 30);
@@ -141,6 +234,12 @@ public class StatImpl implements IImpl {
         return "Use StatImpl#getStatText instead";
     }
 
+    /**
+     * Gets stat text.
+     *
+     * @param player the player
+     * @return the stat text
+     */
     public HashMap<String, String> getStatText(Player player) {
         HashMap<String, String> statText = new HashMap<>();
         statText.put("max_health", player.getDisplayName().getString() + "'s Max Health: " + maxHealth);

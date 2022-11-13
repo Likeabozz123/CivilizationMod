@@ -18,6 +18,7 @@ public class BlockInit {
 
     public static DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Civilization.MOD_ID);
 
+    /* sakura */
     public static RegistryObject<RotatedPillarBlock> SAKURA_LOG = register("sakura_log",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD)),
             new Item.Properties().tab(TabInit.BLOCKS_TAB));

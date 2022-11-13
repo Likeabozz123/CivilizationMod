@@ -10,7 +10,7 @@ import xyz.gamars.civilization.capabilities.CivCapabilities;
 import xyz.gamars.civilization.network.NetworkHandler;
 import xyz.gamars.civilization.network.packets.PacketSyncAgeToClient;
 import xyz.gamars.civilization.network.packets.PacketSyncStatsToClient;
-import xyz.gamars.civilization.network.packets.PacketSyncThirstToClient;
+import xyz.gamars.civilization.network.packets.PacketSyncHydrationToClient;
 
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID)
 public class PlayerJoinListener {
@@ -26,8 +26,8 @@ public class PlayerJoinListener {
         player.getCapability(CivCapabilities.AGE).ifPresent(age -> {
             NetworkHandler.sendToPlayer(new PacketSyncAgeToClient(age.getAge()), player);
         });
-        player.getCapability(CivCapabilities.THIRST).ifPresent(thirst -> {
-            NetworkHandler.sendToPlayer(new PacketSyncThirstToClient(thirst.getThirst()), player);
+        player.getCapability(CivCapabilities.HYDRATION).ifPresent(thirst -> {
+            NetworkHandler.sendToPlayer(new PacketSyncHydrationToClient(thirst.getHydration()), player);
         });
     }
 

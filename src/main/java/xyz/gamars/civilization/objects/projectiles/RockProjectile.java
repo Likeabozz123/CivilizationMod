@@ -37,7 +37,6 @@ public class RockProjectile extends ThrowableItemProjectile {
         super.onHitEntity(pResult);
         Entity entity = pResult.getEntity();
         entity.hurt(DamageSource.thrown(this, this.getOwner()), (float)3);
-        entity.push(0, 3, 0);
     }
 
     @Override

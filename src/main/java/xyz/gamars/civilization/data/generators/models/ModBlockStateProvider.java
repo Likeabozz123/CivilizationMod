@@ -21,12 +21,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
+        /* sakura */
         logBlock(BlockInit.SAKURA_LOG.get());
         axisBlock(BlockInit.SAKURA_WOOD.get(), blockTexture(BlockInit.SAKURA_WOOD.get()), blockTexture(BlockInit.SAKURA_WOOD.get()));
         cutoutBlock(BlockInit.SAKURA_LEAVES.get());
         cutoutBlock(BlockInit.DEAD_SAKURA_LEAVES.get());
         saplingBlock(BlockInit.SAKURA_SAPLING.get(), "sakura_sapling");
-
         flatBlock(BlockInit.SAKURA_VINES.get());
         flatBlock(BlockInit.FLOWERING_SAKURA_LEAVES_OVERLAY.get());
     }

@@ -78,10 +78,10 @@ public class NetworkHandler {
                 .encoder(PacketSyncTribeToClient::toBytes)
                 .consumerMainThread(PacketSyncTribeToClient::handle)
                 .add();
-        INSTANCE.messageBuilder(PacketSyncThirstToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(PacketSyncThirstToClient::new)
-                .encoder(PacketSyncThirstToClient::toBytes)
-                .consumerMainThread(PacketSyncThirstToClient::handle)
+        INSTANCE.messageBuilder(PacketSyncHydrationToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncHydrationToClient::new)
+                .encoder(PacketSyncHydrationToClient::toBytes)
+                .consumerMainThread(PacketSyncHydrationToClient::handle)
                 .add();
     }
 

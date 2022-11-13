@@ -30,8 +30,8 @@ public class RegisterCapabilitiesListener {
             attachCapability(event, CivCapabilities.AGE, AgeProvider.IDENTIFIER, new AgeProvider());
             // TRIBE
             attachCapability(event, CivCapabilities.TRIBE, TribeProvider.IDENTIFIER, new TribeProvider());
-            // THIRST
-            attachCapability(event, CivCapabilities.THIRST, ThirstProvider.IDENTIFIER, new ThirstProvider());
+            // HYDRATION
+            attachCapability(event, CivCapabilities.HYDRATION, HydrationProvider.IDENTIFIER, new HydrationProvider());
             // STATS
             attachCapability(event, CivCapabilities.STATS, StatsProvider.IDENTIFIER, new StatsProvider());
             // TEMPERATURE
@@ -63,11 +63,11 @@ public class RegisterCapabilitiesListener {
                     newTribe.setTribe(originalTribe.getTribe());
                 });
             });
-            // THIRST
-            event.getOriginal().getCapability(CivCapabilities.THIRST).ifPresent(originalThirst -> {
+            // HYDRATION
+            event.getOriginal().getCapability(CivCapabilities.HYDRATION).ifPresent(originalThirst -> {
                 originalThirst.print(event.getOriginal());
-                event.getEntity().getCapability(CivCapabilities.THIRST).ifPresent(newThirst -> {
-                    newThirst.setThirst(originalThirst.getThirst());
+                event.getEntity().getCapability(CivCapabilities.HYDRATION).ifPresent(newThirst -> {
+                    newThirst.setHydration(originalThirst.getHydration());
                 });
             });
             // TEMPERATURE
@@ -103,7 +103,7 @@ public class RegisterCapabilitiesListener {
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.register(AgeImpl.class);
         event.register(TribeImpl.class);
-        event.register(ThirstImpl.class);
+        event.register(HydrationImpl.class);
         event.register(StatImpl.class);
         event.register(TemperatureImpl.class);
     }

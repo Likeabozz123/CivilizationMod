@@ -17,24 +17,41 @@ public class ModItemModelProvider extends ItemModelProvider {
         super(generator, Civilization.MOD_ID, existingFileHelper);
     }
 
+    private final ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
+    private final ModelFile itemHandheld = getExistingFile(mcLoc("item/handheld"));
+
     @Override
     protected void registerModels() {
-        ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
-        ModelFile itemHandheld = getExistingFile(mcLoc("item/handheld"));
+        registerItemModels();
+        registerBlockItemModels();
+    }
 
-        // withExistingParent(ItemInit.TEST_ITEM.get().getRegistryName().getPath(), modLoc("item/test_item"));
-
+    /* item models */
+    public void registerItemModels() {
+        /* dev items */
         builder(ItemInit.DEBUG_ITEM, itemHandheld);
-        builder(ItemInit.ROCK, itemHandheld);
         // builder(ItemInit.BONK_HAMMER, itemGenerated);
 
-        spawnEggBuilder(ItemInit.PLAYER_LIKE_SPAWN_EGG, itemGenerated);
-        spawnEggBuilder(ItemInit.BARBARIAN_SPAWN_EGG, itemGenerated);
+        /* caveman era items */
+        builder(ItemInit.ROCK, itemHandheld);
 
+        /* foods */
+
+
+        /* drinks */
         drinkableItemBuilder(ItemInit.WINE, itemGenerated);
         builder(ItemInit.BEER, itemGenerated);
         drinkableItemBuilder(ItemInit.AMBROSIA, itemGenerated);
 
+        /* spawn eggs */
+        spawnEggBuilder(ItemInit.PLAYER_LIKE_SPAWN_EGG, itemGenerated);
+        spawnEggBuilder(ItemInit.BARBARIAN_SPAWN_EGG, itemGenerated);
+
+    }
+
+    /* block item models */
+    public void registerBlockItemModels() {
+        /* sakura */
         blockBuilder(BlockInit.SAKURA_LOG);
         blockBuilder(BlockInit.SAKURA_WOOD);
         blockBuilder(BlockInit.SAKURA_LEAVES);
@@ -42,7 +59,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         blockBuilder(BlockInit.SAKURA_SAPLING, itemGenerated);
         blockBuilder(BlockInit.SAKURA_VINES, itemGenerated);
         blockBuilder(BlockInit.FLOWERING_SAKURA_LEAVES_OVERLAY, itemGenerated);
-
     }
 
     private ItemModelBuilder builder(String name, ModelFile parent) {

@@ -22,8 +22,7 @@ public class TestEvent {
             if (event.getSource().getEntity() instanceof Player) {
                 ServerPlayer player = (ServerPlayer) event.getSource().getEntity();
                 player.getCapability(CivCapabilities.AGE).ifPresent(age -> {
-                    age.addAge(1);
-                    NetworkHandler.sendToPlayer(new PacketSyncAgeToClient(age.getAge()), player);
+                    age.addAge(1, player);
                     age.print(player);
                     player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0D);
                 });
