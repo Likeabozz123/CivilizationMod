@@ -32,7 +32,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         spawnEggBuilder(ItemInit.BARBARIAN_SPAWN_EGG, itemGenerated);
 
         drinkableItemBuilder(ItemInit.WINE, itemGenerated);
-        drinkableItemBuilder(ItemInit.BEER, itemGenerated);
+        builder(ItemInit.BEER, itemGenerated);
         drinkableItemBuilder(ItemInit.AMBROSIA, itemGenerated);
 
         blockBuilder(BlockInit.SAKURA_LOG);

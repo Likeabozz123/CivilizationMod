@@ -38,6 +38,18 @@ public class ModLangProvider extends LanguageProvider {
         add(ItemInit.WINE.get(), "Wine");
         add(ItemInit.BEER.get(), "Beer");
         add(ItemInit.AMBROSIA.get(), "Ambrosia");
+        add(ItemInit.GRASSHOPPER.get(), "Grasshopper");
+        add(ItemInit.COOKED_GRASSHOPPER.get(), "Cooked Grasshopper");
+        add(ItemInit.STRAWBERRY.get(), "Strawberry");
+        add(ItemInit.WALNUT.get(), "Walnut");
+        add(ItemInit.CHESTNUT.get(), "Chestnut");
+        add(ItemInit.GRAPES.get(), "Grapes");
+        add(ItemInit.BLUEBERRY.get(), "Blueberry");
+        add(ItemInit.BANANA.get(), "Banana");
+        add(ItemInit.COCONUT.get(), "Coconut");
+        add(ItemInit.SMALL_CRAB.get(), "Small Crab");
+        add(ItemInit.CRAB.get(), "Crab");
+        add(ItemInit.LARVA.get(), "Larva");
 
         add(ItemInit.ROCK.get(), "Rock");
 
