@@ -1,7 +1,6 @@
 package xyz.gamars.civilization.data.generators;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.init.BlockInit;
@@ -38,6 +37,7 @@ public class ModLangProvider extends LanguageProvider {
 
         add(ItemInit.WINE.get(), "Wine");
         add(ItemInit.BEER.get(), "Beer");
+        add(ItemInit.AMBROSIA.get(), "Ambrosia");
 
         add(ItemInit.ROCK.get(), "Rock");
 

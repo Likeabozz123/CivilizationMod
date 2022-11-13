@@ -7,7 +7,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 import xyz.gamars.civilization.gui.InteractionScreen;
-import xyz.gamars.civilization.gui.NPCScreen;
 import xyz.gamars.civilization.objects.entities.CivMob;
 
 import java.util.function.Supplier;

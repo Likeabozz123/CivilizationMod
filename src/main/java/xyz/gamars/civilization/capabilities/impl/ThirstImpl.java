@@ -19,7 +19,11 @@ public class ThirstImpl implements IImpl {
 
     // TODO sync the packets inside these methods to prevent forgetting to sync them
     public void addThirst(int thirst) {
-        this.thirst += thirst;
+        if (this.thirst + thirst < 100) {
+            this.thirst += thirst;
+        } else {
+            this.thirst = 100;
+        }
     }
 
     public void resetThirst() {

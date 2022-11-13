@@ -2,7 +2,6 @@ package xyz.gamars.civilization.entities.barbarian;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
@@ -25,9 +24,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.entities.goals.FocusPlayerGoal;
 import xyz.gamars.civilization.entities.goals.StopMovingGoal;
-import xyz.gamars.civilization.gui.NPCScreen;
 import xyz.gamars.civilization.network.NetworkHandler;
-import xyz.gamars.civilization.network.packets.PacketOpenNPCScreen;
 import xyz.gamars.civilization.network.packets.RequestNPCScreen;
 import xyz.gamars.civilization.objects.entities.CivMob;
 

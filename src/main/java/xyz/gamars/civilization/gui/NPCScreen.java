@@ -3,7 +3,6 @@ package xyz.gamars.civilization.gui;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.network.NetworkHandler;

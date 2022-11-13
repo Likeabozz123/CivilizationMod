@@ -10,11 +10,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +17,14 @@ import java.util.List;
 public class DrinkableItem extends Item {
 
     public static final List<DrinkableItem> DRINKABLE_ITEMS = new ArrayList<>();
-    private static final int DRINK_DURATION = 32;
 
     private final int itemColor;
+    private final int drinkSpeed;
     private final int backgroundColor = 0xffffff;
 
-    public DrinkableItem(Properties pProperties, int itemColor) {
+    public DrinkableItem(Properties pProperties, int drinkSpeed, int itemColor) {
         super(pProperties);
+        this.drinkSpeed = drinkSpeed;
         this.itemColor = itemColor;
 
         DRINKABLE_ITEMS.add(this);
@@ -65,7 +61,7 @@ public class DrinkableItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack pStack) {
-        return DRINK_DURATION;
+        return drinkSpeed;
     }
 
     public UseAnim getUseAnimation(ItemStack pStack) {

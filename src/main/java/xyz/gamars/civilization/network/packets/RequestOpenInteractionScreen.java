@@ -1,13 +1,8 @@
 package xyz.gamars.civilization.network.packets;
 
-import com.google.common.graph.Network;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
-import xyz.gamars.civilization.gui.InteractionScreen;
-import xyz.gamars.civilization.gui.NPCScreen;
 import xyz.gamars.civilization.network.NetworkHandler;
 import xyz.gamars.civilization.objects.entities.CivMob;
 

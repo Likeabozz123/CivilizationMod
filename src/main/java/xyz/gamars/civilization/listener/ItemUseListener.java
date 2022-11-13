@@ -23,7 +23,7 @@ public class ItemUseListener {
             ItemStack item = event.getItem();
 
             /* checks if the item consumed is a potion */
-            if (item.is(Items.POTION) || item.is(Items.MILK_BUCKET) || item.is(ItemInit.WINE.get()) || item.is(ItemInit.BEER.get())) {
+            if (item.is(Items.POTION) || item.is(Items.MILK_BUCKET) || item.is(ItemInit.WINE.get()) || item.is(ItemInit.BEER.get()) || item.is(ItemInit.AMBROSIA.get())) {
                 player.getCapability(CivCapabilities.THIRST).ifPresent(thirst -> {
                     /* add thirst to player after consuming potion */
                     thirst.addThirst(10);

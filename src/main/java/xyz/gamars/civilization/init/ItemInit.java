@@ -18,8 +18,9 @@ public class ItemInit {
     public static RegistryObject<Item> LONG_RANGE_BONK_HAMMER = ITEMS.register("long_range_bonk_hammer", () -> new LongRangeBonkHammerItem(new Item.Properties().tab(TabInit.ITEMS_TAB)));
     public static RegistryObject<Item> ROCK = ITEMS.register("rock", () -> new RockItem(new Item.Properties().tab(TabInit.ITEMS_TAB)));
 
-    public static RegistryObject<Item> WINE = ITEMS.register("wine", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 0x722F37));
-    public static RegistryObject<Item> BEER = ITEMS.register("beer", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 0xf28e1c));
+    public static RegistryObject<Item> WINE = ITEMS.register("wine", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 32, 0x722F37));
+    public static RegistryObject<Item> BEER = ITEMS.register("beer", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 32,0xf28e1c));
+    public static RegistryObject<Item> AMBROSIA = ITEMS.register("ambrosia", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 3, 0xf28e1c));
 
     public static final RegistryObject<Item> PLAYER_LIKE_SPAWN_EGG = ITEMS.register("player_spawn_egg",
             () -> new ForgeSpawnEggItem(CivEntityTypes.PLAYER_LIKE,0xffffff, 0x00b6ff,

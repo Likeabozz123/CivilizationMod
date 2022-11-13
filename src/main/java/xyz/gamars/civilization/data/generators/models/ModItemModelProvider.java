@@ -33,6 +33,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         drinkableItemBuilder(ItemInit.WINE, itemGenerated);
         drinkableItemBuilder(ItemInit.BEER, itemGenerated);
+        drinkableItemBuilder(ItemInit.AMBROSIA, itemGenerated);
 
         blockBuilder(BlockInit.SAKURA_LOG);
         blockBuilder(BlockInit.SAKURA_WOOD);

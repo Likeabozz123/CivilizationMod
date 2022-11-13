@@ -13,7 +13,6 @@ import xyz.gamars.civilization.entities.playerlike.PlayerLikeRenderer;
 import xyz.gamars.civilization.init.BlockInit;
 import xyz.gamars.civilization.init.CivEntityTypes;
 import xyz.gamars.civilization.init.ItemInit;
-import xyz.gamars.civilization.listener.ItemColorListener;
 import xyz.gamars.civilization.network.NetworkHandler;
 
 @Mod(Civilization.MOD_ID)
