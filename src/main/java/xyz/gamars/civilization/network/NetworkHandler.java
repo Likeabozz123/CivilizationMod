@@ -33,6 +33,30 @@ public class NetworkHandler {
                 .consumerMainThread(PacketPrintAge::handle)
                 .add();
 
+        /* open npc screen packet */
+        INSTANCE.messageBuilder(PacketOpenNPCScreen.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketOpenNPCScreen::new)
+                .encoder(PacketOpenNPCScreen::toBytes)
+                .consumerMainThread(PacketOpenNPCScreen::handle)
+                .add();
+        INSTANCE.messageBuilder(PacketOpenInteractionScreen.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketOpenInteractionScreen::new)
+                .encoder(PacketOpenInteractionScreen::toBytes)
+                .consumerMainThread(PacketOpenInteractionScreen::handle)
+                .add();
+
+        INSTANCE.messageBuilder(RequestNPCScreen.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(RequestNPCScreen::new)
+                .encoder(RequestNPCScreen::toBytes)
+                .consumerMainThread(RequestNPCScreen::handle)
+                .add();
+        INSTANCE.messageBuilder(RequestOpenInteractionScreen.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(RequestOpenInteractionScreen::new)
+                .encoder(RequestOpenInteractionScreen::toBytes)
+                .consumerMainThread(RequestOpenInteractionScreen::handle)
+                .add();
+
+
         /* registers syncing packets */
         INSTANCE.messageBuilder(PacketSyncAgeToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketSyncAgeToClient::new)
@@ -60,6 +84,7 @@ public class NetworkHandler {
                 .consumerMainThread(PacketSyncThirstToClient::handle)
                 .add();
     }
+
 
     public static <MSG> void sendToServer(MSG message) {
         INSTANCE.sendToServer(message);

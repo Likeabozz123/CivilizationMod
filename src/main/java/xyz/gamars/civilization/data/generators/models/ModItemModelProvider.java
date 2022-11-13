@@ -29,6 +29,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         spawnEggBuilder(ItemInit.PLAYER_LIKE_SPAWN_EGG, itemGenerated);
         spawnEggBuilder(ItemInit.BARBARIAN_SPAWN_EGG, itemGenerated);
+
+        drinkableItemBuilder(ItemInit.WINE, itemGenerated);
+        drinkableItemBuilder(ItemInit.BEER, itemGenerated);
+
         blockBuilder(BlockInit.SAKURA_LOG);
         blockBuilder(BlockInit.SAKURA_WOOD);
         blockBuilder(BlockInit.SAKURA_LEAVES);
@@ -51,6 +55,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder spawnEggBuilder(RegistryObject item, ModelFile parent) {
         String itemName = item.getId().toString().split(":")[1];
         return getBuilder(itemName).parent(parent).texture("layer0", "item/spawn_egg").texture("layer1", "item/spawn_egg_overlay");
+    }
+
+    private ItemModelBuilder drinkableItemBuilder(RegistryObject item, ModelFile parent) {
+        String itemName = item.getId().toString().split(":")[1];
+        return getBuilder(itemName).parent(parent).texture("layer0", "item/drinkable_item").texture("layer1", "item/drinkable_item_overlay");
     }
 
     private ItemModelBuilder blockBuilder(String name) {

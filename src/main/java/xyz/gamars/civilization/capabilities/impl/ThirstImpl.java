@@ -17,6 +17,7 @@ public class ThirstImpl implements IImpl {
         this.thirst = thirst;
     }
 
+    // TODO sync the packets inside these methods to prevent forgetting to sync them
     public void addThirst(int thirst) {
         this.thirst += thirst;
     }
@@ -30,7 +31,9 @@ public class ThirstImpl implements IImpl {
     }
 
     public void decrementThirst() {
-        thirst--;
+        if(thirst > 0) {
+            thirst--;
+        }
     }
 
     @Override

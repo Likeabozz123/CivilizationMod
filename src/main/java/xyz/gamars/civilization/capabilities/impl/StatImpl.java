@@ -7,8 +7,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import xyz.gamars.civilization.HelperMethods;
 import xyz.gamars.civilization.capabilities.CivCapabilities;
-import xyz.gamars.civilization.network.NetworkHandler;
-import xyz.gamars.civilization.network.packets.PacketSyncStatsToClient;
 
 import java.util.HashMap;
 import java.util.Random;

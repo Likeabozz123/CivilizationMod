@@ -1,10 +1,11 @@
 package xyz.gamars.civilization.data.generators;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 import xyz.gamars.civilization.Civilization;
-import xyz.gamars.civilization.init.CivEntityTypes;
 import xyz.gamars.civilization.init.BlockInit;
+import xyz.gamars.civilization.init.CivEntityTypes;
 import xyz.gamars.civilization.init.ItemInit;
 
 public class ModLangProvider extends LanguageProvider {
@@ -33,6 +34,10 @@ public class ModLangProvider extends LanguageProvider {
 
         add(ItemInit.DEBUG_ITEM.get(), "Debug Item");
         add(ItemInit.BONK_HAMMER.get(), "Bonk Hammer");
+
+        add(ItemInit.WINE.get(), "Wine");
+        add(ItemInit.BEER.get(), "Beer");
+
         add(ItemInit.PLAYER_LIKE_SPAWN_EGG.get(), "Player Spawn Egg");
         add(ItemInit.BARBARIAN_SPAWN_EGG.get(), "Barbarian Spawn Egg");
 
@@ -66,7 +71,6 @@ public class ModLangProvider extends LanguageProvider {
         add("item." + Civilization.MOD_ID +"." + toolMaterial + "_sword", upperCaseToolMaterial + " Sword");
         add("item." + Civilization.MOD_ID +"." + toolMaterial + "_hoe", upperCaseToolMaterial + " Hoe");
     }
-
 
 
 

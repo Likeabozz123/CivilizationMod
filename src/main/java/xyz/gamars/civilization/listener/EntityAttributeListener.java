@@ -4,9 +4,9 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.gamars.civilization.Civilization;
-import xyz.gamars.civilization.init.CivEntityTypes;
 import xyz.gamars.civilization.entities.barbarian.BarbarianEntity;
 import xyz.gamars.civilization.entities.playerlike.PlayerLikeEntity;
+import xyz.gamars.civilization.init.CivEntityTypes;
 
 @Mod.EventBusSubscriber(modid = Civilization.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityAttributeListener {

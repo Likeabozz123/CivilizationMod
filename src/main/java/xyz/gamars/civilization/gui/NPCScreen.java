@@ -3,8 +3,11 @@ package xyz.gamars.civilization.gui;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import xyz.gamars.civilization.Civilization;
+import xyz.gamars.civilization.network.NetworkHandler;
+import xyz.gamars.civilization.network.packets.RequestOpenInteractionScreen;
 import xyz.gamars.civilization.objects.entities.CivMob;
 
 /* npc screen that displays when interacting with a npc */
@@ -13,9 +16,11 @@ public class NPCScreen extends Screen {
     private Player player;
     private CivMob civMob;
 
+/*  DEPRECATED
     public NPCScreen() {
         super(Component.translatable("screen." + Civilization.MOD_ID + ".main_interaction"));
-    } // ONLY HERE FOR DEV PURPOSES GET RID OF LATER, AND USE THE OTHER CONSTRUCTOR WITH THE PARAMETERS TO PROPERLY CREATE LOGIC
+    }
+*/
 
     public NPCScreen(Player player, CivMob civMob) {
         super(Component.translatable("screen." + Civilization.MOD_ID + ".main_interaction"));
@@ -29,8 +34,10 @@ public class NPCScreen extends Screen {
         /* buttons for the npc screen */
         addRenderableWidget(new Button(555, 10, 80, 20, Component.literal("Interact"), button -> {
             // OPEN INTERACTION SCREEN
-            openInteractionMenu(player, civMob);
-            civMob.setTalkingPlayer(player);
+            openInteractionMenu();
+            if (civMob != null) {
+                civMob.setTalkingPlayer(player);
+            }
         }));
         addRenderableWidget(new Button(555, 32, 80, 20, Component.literal("Follow Me"), button -> {
             // CODE HERE
@@ -64,12 +71,16 @@ public class NPCScreen extends Screen {
     @Override
     public void removed() {
         super.removed();
-        this.civMob.setTalkingPlayer(null);
+        if (civMob != null) {
+            this.civMob.setTalkingPlayer(null);
+            System.out.println("No longer talking to player");
+        }
     }
 
     /* opens the interaction menu with the mob and player  */
-    public void openInteractionMenu(Player player, CivMob civMob) {
-        minecraft.setScreen(new InteractionScreen(player, civMob));
+    public void openInteractionMenu() {
+        // getMinecraft().setScreen(new InteractionScreen(this.player, this.civMob));
+        NetworkHandler.sendToServer(new RequestOpenInteractionScreen(this.player, this.civMob));
     }
 
     /* prevents the game from pausing when interacting with npc */

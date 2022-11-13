@@ -2,6 +2,7 @@ package xyz.gamars.civilization.listener;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -89,6 +90,8 @@ public class RegisterCapabilitiesListener {
                     newStats.setGender(originalStats.getGender());
                     newStats.setWisdom(originalStats.getWisdom());
                     newStats.setRacism(originalStats.getRacism());
+
+                    event.getEntity().getAttribute(Attributes.MAX_HEALTH).setBaseValue(newStats.getMaxHealth());
                 });
             });
 

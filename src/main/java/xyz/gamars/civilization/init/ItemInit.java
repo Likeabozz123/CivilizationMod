@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.objects.items.BonkHammerItem;
 import xyz.gamars.civilization.objects.items.DebugItem;
+import xyz.gamars.civilization.objects.items.DrinkableItem;
 
 /* items */
 public class ItemInit {
@@ -17,11 +18,16 @@ public class ItemInit {
     public static RegistryObject<Item> DEBUG_ITEM = ITEMS.register("debug_item", () -> new DebugItem(new Item.Properties().tab(TabInit.ITEMS_TAB)));
     public static RegistryObject<Item> BONK_HAMMER = ITEMS.register("bonk_hammer", () -> new BonkHammerItem(new Item.Properties().tab(TabInit.ITEMS_TAB)));
 
+    public static RegistryObject<Item> WINE = ITEMS.register("wine", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 0x722F37));
+    public static RegistryObject<Item> BEER = ITEMS.register("beer", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 0xf28e1c));
+
     public static final RegistryObject<Item> PLAYER_LIKE_SPAWN_EGG = ITEMS.register("player_spawn_egg",
             () -> new ForgeSpawnEggItem(CivEntityTypes.PLAYER_LIKE,0xffffff, 0x00b6ff,
                     new Item.Properties().tab(TabInit.ITEMS_TAB)));
     public static final RegistryObject<Item> BARBARIAN_SPAWN_EGG = ITEMS.register("barbarian_spawn_egg",
             () -> new ForgeSpawnEggItem(CivEntityTypes.BARBARIAN,0xffffff, 0xff3c00,
                     new Item.Properties().tab(TabInit.ITEMS_TAB)));
+
+
 
 }

@@ -1,8 +1,8 @@
 package xyz.gamars.civilization.entities.barbarian;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
@@ -26,6 +26,9 @@ import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.entities.goals.FocusPlayerGoal;
 import xyz.gamars.civilization.entities.goals.StopMovingGoal;
 import xyz.gamars.civilization.gui.NPCScreen;
+import xyz.gamars.civilization.network.NetworkHandler;
+import xyz.gamars.civilization.network.packets.PacketOpenNPCScreen;
+import xyz.gamars.civilization.network.packets.RequestNPCScreen;
 import xyz.gamars.civilization.objects.entities.CivMob;
 
 public class BarbarianEntity extends CivMob {
@@ -39,7 +42,7 @@ public class BarbarianEntity extends CivMob {
     private String idleAnimation = "animation.barbarian_entity.idle";
 
     private Player talkingPlayer;
-
+    private final CivMob civMob = this;
 
     public BarbarianEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -97,7 +100,7 @@ public class BarbarianEntity extends CivMob {
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (hand == InteractionHand.MAIN_HAND) {
             if (player.level.isClientSide()) {
-                Minecraft.getInstance().setScreen(new NPCScreen(player, this));
+                NetworkHandler.sendToServer(new RequestNPCScreen(player, this.civMob));
             }
             if (!player.level.isClientSide()) {
                 setTalkingPlayer(player); // if player exists, then change the goal of the entity to look at player, when screen is closed change the talking player to null

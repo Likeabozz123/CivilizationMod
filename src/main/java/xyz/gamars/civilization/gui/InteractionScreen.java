@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.objects.entities.CivMob;
 
-/* useless class? not sure past daryan did not comment on why this exists */
+/* screen for interacting with npc */
 public class InteractionScreen extends Screen {
 
     private Player player;
@@ -54,7 +54,9 @@ public class InteractionScreen extends Screen {
     @Override
     public void removed() {
         super.removed();
-        this.civMob.setTalkingPlayer(null);
+        if(this.civMob != null) {
+            this.civMob.setTalkingPlayer(null);
+        }
     }
 
 }

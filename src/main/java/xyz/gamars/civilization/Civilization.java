@@ -8,11 +8,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import software.bernie.geckolib3.GeckoLib;
-import xyz.gamars.civilization.init.CivEntityTypes;
 import xyz.gamars.civilization.entities.barbarian.BarbarianRenderer;
 import xyz.gamars.civilization.entities.playerlike.PlayerLikeRenderer;
 import xyz.gamars.civilization.init.BlockInit;
+import xyz.gamars.civilization.init.CivEntityTypes;
 import xyz.gamars.civilization.init.ItemInit;
+import xyz.gamars.civilization.listener.ItemColorListener;
 import xyz.gamars.civilization.network.NetworkHandler;
 
 @Mod(Civilization.MOD_ID)
@@ -49,11 +50,14 @@ public class Civilization {
         /* register entity renderers */
         EntityRenderers.register(CivEntityTypes.PLAYER_LIKE.get(), PlayerLikeRenderer::new);
         EntityRenderers.register(CivEntityTypes.BARBARIAN.get(), BarbarianRenderer::new);
+
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         /* registers the network handler */
         NetworkHandler.register();
+
     }
 
 

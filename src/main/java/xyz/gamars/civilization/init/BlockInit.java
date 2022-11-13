@@ -40,7 +40,7 @@ public class BlockInit {
             () -> new SaplingBlock(new OakTreeGrower(), BlockBehaviour.Properties.of(Material.LEAVES).noCollission().instabreak()),
             new Item.Properties().tab(TabInit.BLOCKS_TAB));
 
-
+    /* registers block & block item */
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> supplier, Item.Properties properties) {
         RegistryObject<T> block = BLOCKS.register(name, supplier);
         ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(), properties));
