@@ -6,9 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import xyz.gamars.civilization.Civilization;
-import xyz.gamars.civilization.objects.items.BonkHammerItem;
-import xyz.gamars.civilization.objects.items.DebugItem;
-import xyz.gamars.civilization.objects.items.DrinkableItem;
+import xyz.gamars.civilization.objects.items.*;
 
 /* items */
 public class ItemInit {
@@ -17,6 +15,8 @@ public class ItemInit {
 
     public static RegistryObject<Item> DEBUG_ITEM = ITEMS.register("debug_item", () -> new DebugItem(new Item.Properties().tab(TabInit.ITEMS_TAB)));
     public static RegistryObject<Item> BONK_HAMMER = ITEMS.register("bonk_hammer", () -> new BonkHammerItem(new Item.Properties().tab(TabInit.ITEMS_TAB)));
+    public static RegistryObject<Item> LONG_RANGE_BONK_HAMMER = ITEMS.register("long_range_bonk_hammer", () -> new LongRangeBonkHammerItem(new Item.Properties().tab(TabInit.ITEMS_TAB)));
+    public static RegistryObject<Item> ROCK = ITEMS.register("rock", () -> new RockItem(new Item.Properties().tab(TabInit.ITEMS_TAB)));
 
     public static RegistryObject<Item> WINE = ITEMS.register("wine", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 0x722F37));
     public static RegistryObject<Item> BEER = ITEMS.register("beer", () -> new DrinkableItem(new Item.Properties().tab(TabInit.ITEMS_TAB), 0xf28e1c));

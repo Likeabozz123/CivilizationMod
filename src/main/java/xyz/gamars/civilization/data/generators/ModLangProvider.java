@@ -34,9 +34,12 @@ public class ModLangProvider extends LanguageProvider {
 
         add(ItemInit.DEBUG_ITEM.get(), "Debug Item");
         add(ItemInit.BONK_HAMMER.get(), "Bonk Hammer");
+        add(ItemInit.LONG_RANGE_BONK_HAMMER.get(), "Long Range Bonk Hammer");
 
         add(ItemInit.WINE.get(), "Wine");
         add(ItemInit.BEER.get(), "Beer");
+
+        add(ItemInit.ROCK.get(), "Rock");
 
         add(ItemInit.PLAYER_LIKE_SPAWN_EGG.get(), "Player Spawn Egg");
         add(ItemInit.BARBARIAN_SPAWN_EGG.get(), "Barbarian Spawn Egg");
@@ -69,6 +72,7 @@ public class ModLangProvider extends LanguageProvider {
         add("item." + Civilization.MOD_ID +"." + toolMaterial + "_axe", upperCaseToolMaterial + " Axe");
         add("item." + Civilization.MOD_ID +"." + toolMaterial + "_shovel", upperCaseToolMaterial + " Shovel");
         add("item." + Civilization.MOD_ID +"." + toolMaterial + "_sword", upperCaseToolMaterial + " Sword");
+        add("item." + Civilization.MOD_ID +"." + toolMaterial + "_hoe", upperCaseToolMaterial + " Hoe");
         add("item." + Civilization.MOD_ID +"." + toolMaterial + "_hoe", upperCaseToolMaterial + " Hoe");
     }
 
