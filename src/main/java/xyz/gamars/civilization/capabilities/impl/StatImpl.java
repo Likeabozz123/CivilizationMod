@@ -11,6 +11,9 @@ import xyz.gamars.civilization.capabilities.CivCapabilities;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * The type Stat.
+ */
 public class StatImpl implements IImpl {
 
     public static final String NBT_KEY_MAX_HEALTH = "max_health";
@@ -193,6 +196,79 @@ public class StatImpl implements IImpl {
      */
     public void setRacism(int racism) {
         this.racism = racism;
+    }
+
+
+    /**
+     * Add max health.
+     *
+     * @param maxHealth the max health
+     */
+    public void addMaxHealth(int maxHealth) {
+        this.maxHealth += maxHealth;
+    }
+
+    /**
+     * Add intelligence.
+     *
+     * @param intelligence the intelligence
+     */
+    public void addIntelligence(int intelligence) {
+        this.intelligence += intelligence;
+    }
+
+    /**
+     * Add wisdom.
+     *
+     * @param wisdom the wisdom
+     */
+    public void addWisdom(int wisdom) {
+        this.wisdom += wisdom;
+    }
+
+    /**
+     * Add racism.
+     *
+     * @param racism the racism
+     */
+    public void addRacism(int racism) {
+        this.racism += racism;
+    }
+
+    /**
+     * Add charisma.
+     *
+     * @param charisma the charisma
+     */
+    public void addCharisma(int charisma) {
+        this.charisma += charisma;
+    }
+
+    /**
+     * Add strength.
+     *
+     * @param strength the strength
+     */
+    public void addStrength(int strength) {
+        this.strength += strength;
+    }
+
+    /**
+     * Add speed.
+     *
+     * @param speed the speed
+     */
+    public void addSpeed(int speed) {
+        this.speed += speed;
+    }
+
+    /**
+     * Add stamina.
+     *
+     * @param stamina the stamina
+     */
+    public void addStamina(int stamina) {
+        this.stamina += stamina;
     }
 
     /**

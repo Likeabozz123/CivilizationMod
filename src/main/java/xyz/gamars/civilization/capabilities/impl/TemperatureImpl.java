@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import xyz.gamars.civilization.data.generators.tags.CivTags;
 import xyz.gamars.civilization.network.NetworkHandler;
 import xyz.gamars.civilization.network.packets.PacketSyncTempToClient;
 
@@ -147,6 +148,33 @@ public class TemperatureImpl implements IImpl {
         } else if (temperature > goalTemp) {
             decrementTill(goalTemp, player);
         }
+    }
+
+    /**
+     * Calculates the armor offset to the temperature
+     *
+     * @param player the player
+     * @return the temperature offset
+     */
+    public double getArmorModifiers(Player player) {
+
+        // check with tags instead of manually each one
+
+        // COOL ARMOR
+        // WARM ARMOR
+        // HOT ARMOR
+
+        double modifier = 0;
+
+        for (int i = 0; i < 4; i++) {
+            double coolArmor = player.getInventory().getArmor(i).is(CivTags.Items.COOL_ARMOR) ? -2.5 : 0;
+            double warmArmor = player.getInventory().getArmor(i).is(CivTags.Items.WARM_ARMOR) ? 2.5 : 0;
+            double hotArmor = player.getInventory().getArmor(i).is(CivTags.Items.HOT_ARMOR) ? 5 : 0;
+
+            modifier += coolArmor + warmArmor + hotArmor;
+        }
+
+        return modifier;
     }
 
     @Override

@@ -9,9 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 import xyz.gamars.civilization.Civilization;
 import xyz.gamars.civilization.capabilities.CivCapabilities;
 import xyz.gamars.civilization.data.generators.tags.CivTags;
-import xyz.gamars.civilization.network.NetworkHandler;
-import xyz.gamars.civilization.network.packets.PacketSyncAgeToClient;
-import xyz.gamars.civilization.network.packets.PacketSyncTempToClient;
 
 /**
  * The type Tick listeners.
@@ -94,22 +91,22 @@ public class TickListeners {
                     ServerPlayer serverPlayer = (ServerPlayer) player;
                     player.getCapability(CivCapabilities.TEMPERATURE).ifPresent(temperature -> {
                         if (extremelyColdBiome) {
-                            temperature.adjustTempTo(30 + armorModifiers(serverPlayer), serverPlayer);
+                            temperature.adjustTempTo(30 + temperature.getArmorModifiers(serverPlayer), serverPlayer);
                         }
                         if (coldBiome) {
-                            temperature.adjustTempTo(50 + armorModifiers(serverPlayer), serverPlayer);
+                            temperature.adjustTempTo(50 + temperature.getArmorModifiers(serverPlayer), serverPlayer);
                         }
                         if (coolBiome) {
-                            temperature.adjustTempTo(70 + armorModifiers(serverPlayer), serverPlayer);
+                            temperature.adjustTempTo(70 + temperature.getArmorModifiers(serverPlayer), serverPlayer);
                         }
                         if (warmBiome) {
-                            temperature.adjustTempTo(80 + armorModifiers(serverPlayer), serverPlayer);
+                            temperature.adjustTempTo(80 + temperature.getArmorModifiers(serverPlayer), serverPlayer);
                         }
                         if (hotBiome) {
-                            temperature.adjustTempTo(90 + armorModifiers(serverPlayer), serverPlayer);
+                            temperature.adjustTempTo(90 + temperature.getArmorModifiers(serverPlayer), serverPlayer);
                         }
                         if (extremelyHotBiome) {
-                            temperature.adjustTempTo(100 + armorModifiers(serverPlayer), serverPlayer);
+                            temperature.adjustTempTo(100 + temperature.getArmorModifiers(serverPlayer), serverPlayer);
                         }
 
                         /* when player is too hot, increase the thirst, and after a certain point they start burning up */
@@ -132,30 +129,5 @@ public class TickListeners {
     }
 
 
-    /**
-     * Calculates the armor offset to the temperature
-     *
-     * @param player the player
-     * @return the temperature offset
-     */
-    public static double armorModifiers(Player player) {
 
-        // check with tags instead of manually each one
-
-        // COOL ARMOR
-        // WARM ARMOR
-        // HOT ARMOR
-
-        double modifier = 0;
-
-        for (int i = 0; i < 4; i++) {
-            double coolArmor = player.getInventory().getArmor(i).is(CivTags.Items.COOL_ARMOR) ? -2.5 : 0;
-            double warmArmor = player.getInventory().getArmor(i).is(CivTags.Items.WARM_ARMOR) ? 2.5 : 0;
-            double hotArmor = player.getInventory().getArmor(i).is(CivTags.Items.HOT_ARMOR) ? 5 : 0;
-
-            modifier += coolArmor + warmArmor + hotArmor;
-        }
-
-        return modifier;
-    }
 }
